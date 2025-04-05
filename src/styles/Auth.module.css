@@ -1,128 +1,123 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
 
-.container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Raleway', sans-serif;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  position: relative;
   overflow: hidden;
-  color: #fff;
 }
 
-.videoBg {
-  position: fixed;
+.backgroundImageContainer {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-image: url('/registerbg.jpg');
+  background-size: cover;
+  background-position: center;
   z-index: -1;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: -1;
+  filter: brightness(0.7);
 }
 
 .formContainer {
+  width: 100%;
+  max-width: 500px;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.formWrapper {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formTitle {
+  color: #8B4513;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form {
   display: flex;
-  width: 850px;
-  height: 550px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 2rem;
-  position: relative;
-  z-index: 2;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.welcomeSection {
-  flex: 1;
-  padding: 2rem;
-  position: relative;
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.welcomeSection h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 4.5rem;
-  font-weight: 700;
+.formGroup label {
+  font-weight: 500;
+  color: #5c5c5c;
 }
 
-.welcomeText {
-  font-family: 'Playfair Display', serif;
+.formInput {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 1rem;
-  margin-top: 60px;
-  font-style: italic;
+  transition: border-color 0.3s ease;
 }
 
-.signupSection {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  padding: 2rem;
-  border-radius: 10px;
-  position: relative;
+.formInput:focus {
+  border-color: #8B4513;
+  outline: none;
 }
 
-.signupSection h2 {
-  font-family: 'Montserrat', sans-serif;
-  color: #333;
-  font-weight: 600;
-}
-
-.inputField {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #e65100;
-  border: none;
+.submitButton {
+  padding: 0.75rem;
+  background-color: #8B4513;
   color: white;
+  border: none;
+  border-radius: 4px;
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 5px;
-  margin-top: 14px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #bf360c;
+.submitButton:hover {
+  background-color: #704012;
 }
 
-.btn:disabled {
+.submitButton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.loginText {
+.formFooter {
+  margin-top: 1.5rem;
   text-align: center;
-  font-size: 14px;
-  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.loginText a {
-  color: #e65100;
+.formLink {
+  color: #8B4513;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.loginText a:hover {
-  text-decoration: underline;
+.formLink:hover {
+  color: #704012;
 }
 
 .errorMessage {
