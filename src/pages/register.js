@@ -50,78 +50,81 @@ export default function Register() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Register | Smart Real Estate Management System</title>
+        <title>Sign Up - Smart Real Estate</title>
         <meta name="description" content="Create a Smart Real Estate account" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
       </Head>
 
-      <div className={styles.backgroundImageContainer}>
-        {/* Background image will be set via CSS */}
-      </div>
+      <video className={styles.videoBg} autoPlay loop muted playsInline>
+        <source src="/background2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div className={styles.overlay}></div>
 
       <div className={styles.formContainer}>
-        <div className={styles.formWrapper}>
-          <h1 className={styles.formTitle}>Create an Account</h1>
+        <div className={styles.welcomeSection}>
+          <h1>Join SmartEstate Now!</h1>
+          <p className={styles.welcomeText}>Sign up to find and manage your dream properties with ease.</p>
+        </div>
+
+        <div className={styles.signupSection}>
+          <h2>Sign Up</h2>
           
           {error && <div className={styles.errorMessage}>{error}</div>}
           
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.formGroup}>
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className={styles.formInput}
-              />
-            </div>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className={styles.inputField}
+              placeholder="Choose a username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
             
-            <div className={styles.formGroup}>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className={styles.formInput}
-              />
-            </div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className={styles.inputField}
+              placeholder="Enter 6 characters or more"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength="6"
+            />
             
-            <div className={styles.formGroup}>
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                className={styles.formInput}
-              />
-            </div>
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              className={styles.inputField}
+              placeholder="Re-enter your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength="6"
+            />
             
-            <button
-              type="submit"
+            <button 
+              type="submit" 
+              className={styles.btn}
               disabled={loading}
-              className={styles.submitButton}
             >
-              {loading ? 'Creating Account...' : 'Register'}
+              {loading ? 'Creating Account...' : 'Sign Up'}
             </button>
-          </form>
-          
-          <div className={styles.formFooter}>
-            <p>
-              Already have an account?{' '}
-              <Link href="/login" className={styles.formLink}>
-                Login
-              </Link>
+            
+            <p className={styles.loginText}>
+              Already have an account? <Link href="/login">Login</Link>
             </p>
-            <Link href="/" className={styles.formLink}>
-              Return to Home
-            </Link>
-          </div>
+          </form>
         </div>
       </div>
     </div>

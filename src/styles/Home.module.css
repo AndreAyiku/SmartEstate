@@ -1,179 +1,262 @@
 .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #8B4513; /* Brown navbar */
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbarLeft {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .navbarRight {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navLink {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .navLink:hover {
-    color: #f0e6d2; /* Light brown on hover */
-  }
-  
-  .loginButton, .registerButton {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .loginButton {
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-  }
-  
-  .loginButton:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .registerButton {
-    background-color: white;
-    color: #8B4513; /* Brown text */
-    border: 1px solid white;
-  }
-  
-  .registerButton:hover {
-    background-color: #f0e6d2; /* Light brown on hover */
-  }
-  
-  .logoutButton {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 500;
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .logoutButton:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .welcomeUser {
-    margin-right: 1rem;
-    font-weight: 500;
-  }
-  
-  .main {
-    flex: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .backgroundImageContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/indexbg.jpg'); /* You'll need to add this image to your public folder */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-    z-index: -1;
-  }
-  
-  .welcomeMessage {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 8px;
-    text-align: center;
-    max-width: 700px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .welcomeMessage h1 {
-    color: #8B4513; /* Brown color */
-    margin-bottom: 1rem;
-  }
-  
-  .welcomeMessage p {
-    color: #5c5c5c;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-  }
-  
-  .ctaButtons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  
-  .ctaButton {
-    padding: 0.75rem 1.5rem;
-    background-color: #8B4513; /* Brown */
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-  
-  .ctaButton:hover {
-    background-color: #704012; /* Darker brown */
-  }
-  
-  .ctaSecondary {
-    padding: 0.75rem 1.5rem;
-    background-color: transparent;
-    color: #8B4513; /* Brown */
-    border: 1px solid #8B4513;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  
-  .ctaSecondary:hover {
-    background-color: #f0e6d2; /* Light brown */
-  }
-  
-  .footer {
-    padding: 1.5rem;
-    background-color: #8B4513; /* Brown */
-    color: white;
-    text-align: center;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #0f172a;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo i {
+  font-size: 1.8rem;
+  color: #e65100;
+  margin-right: 10px;
+}
+
+.navLink {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navLink:hover {
+  color: #e65100;
+}
+
+.loginButton, .registerButton {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.loginButton {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.loginButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.registerButton {
+  background-color: white;
+  color: #0f172a;
+  border: 1px solid white;
+}
+
+.registerButton:hover {
+  background-color: #f0f0f0;
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.welcomeUser {
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+  margin-top: 80px;
+  z-index: 1;
+}
+
+.videoBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.welcomeMessage {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 20px;
+}
+
+.welcomeMessage h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.welcomeMessage p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #e65100;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.ctaButton:hover {
+  background-color: #bf360c;
+}
+
+.ctaSecondary {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer {
+  background-color: #0f172a;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footerTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #1a2332;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.socialIcons a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  width: 50px;
+  height: 50px;
+}
+
+.socialIcons a:hover {
+  background: #e65100;
+}
+
+.footerText {
+  color: white;
+  font-size: 1rem;
+  padding-top: 20px;
+}
+
+.footerText span {
+  color: #e65100;
+  font-weight: bold;
+}
+
+.footerText a {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -25,15 +25,17 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Smart Real Estate Management System</title>
+        <title>Smart Real Estate</title>
         <meta name="description" content="Smart Real Estate Management System" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
           <Link href="/" className={styles.logo}>
-            SmartEstate
+            <i className="bx bxs-building-house"></i> SmartEstate
           </Link>
           <Link href="/" className={styles.navLink}>
             Home
@@ -73,17 +75,22 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className={styles.main}>
-        <div className={styles.backgroundImageContainer}>
-          {/* Background image will be set via CSS in Home.module.css */}
-        </div>
+      {/* Background Video */}
+      <video className={styles.videoBg} autoPlay loop muted playsInline>
+        <source src="/background3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
+      {/* Dark Overlay */}
+      <div className={styles.overlay}></div>
+
+      <main className={styles.main}>
         <div className={styles.welcomeMessage}>
-          <h1>Welcome to Smart Real Estate Management System</h1>
-          <p>Find your dream property with our AI-powered recommendations and interactive maps</p>
+          <h1>Welcome to Smart Real Estate</h1>
+          <p>Find, rent, and buy properties effortlessly.</p>
           <div className={styles.ctaButtons}>
             <Link href="/properties" className={styles.ctaButton}>
-              Browse Properties
+              Get Started
             </Link>
             <Link href="/ai-chatbot" className={styles.ctaSecondary}>
               Get Personalized Recommendations
@@ -93,7 +100,18 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <p>&copy; 2025 Smart Real Estate Management System</p>
+        <div className={styles.footerTop}>
+          <div className={styles.socialIcons}>
+            <a href="#"><i className="bx bxl-facebook"></i></a>
+            <a href="#"><i className="bx bxl-twitter"></i></a>
+            <a href="#"><i className="bx bxl-instagram"></i></a>
+            <a href="#"><i className="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+        <p className={styles.footerText}>
+          <span>Need more info?</span> 
+          <a href="contact.html">Contact us</a> or explore <a href="services.html">Our Services</a>.
+        </p>
       </footer>
     </div>
   );
