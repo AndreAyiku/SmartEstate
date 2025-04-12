@@ -15,16 +15,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
   
-  const { username, password } = req.body;
+  const { username, password, rememberMe } = req.body;
   
   if (!username || !password) {
-    return res.status(400).json({ message: 'Username and password are required' });
+    return res.status(400).json({ message: 'Username/Email and password are required' });
   }
   
   try {
-    // Check if user exists
+    // Check if user exists by either username or email
     const userResult = await pool.query(
-      'SELECT * FROM "user" WHERE username = $1',
+      'SELECT * FROM "user" WHERE username = $1 OR email = $1',
       [username]
     );
     

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import styles from '../styles/Authlogin.module.css';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,11 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password, rememberMe }),
+        body: JSON.stringify({ 
+          username: identifier, // Backend expects 'username' but will check against both username or email
+          password, 
+          rememberMe 
+        }),
       });
 
       const data = await response.json();
@@ -32,8 +36,9 @@ export default function Login() {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Store user info in localStorage
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Store user info in localStorage WITHOUT the profile picture data
+      const { profile_picture, ...userWithoutPicture } = data.user;
+      localStorage.setItem('user', JSON.stringify(userWithoutPicture));
       
       // Redirect to home page
       router.push('/');
@@ -78,30 +83,35 @@ export default function Login() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           
           <form onSubmit={handleSubmit} id="loginForm">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className={styles.formInput}
-              placeholder="Enter your username"
-              required
-            />
+            <div className={styles.inputGroup}>
+              <label htmlFor="identifier" className={styles.inputLabel}>Username or Email</label>
+              <input
+                type="text"
+                id="identifier"
+                name="identifier"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
+                className={styles.formInput}
+                placeholder="Enter your username or email"
+                required
+              />
+            </div>
             
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.formInput}
-              placeholder="Enter 6 characters or more"
-              required
-              minLength="6"
-            />
+            <div className={styles.inputGroup}>
+              <label htmlFor="password" className={styles.inputLabel}>Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.formInput}
+                placeholder="Enter your password"
+                required
+                minLength="6"
+              />
+              <p className={styles.helperText}>Must be at least 6 characters</p>
+            </div>
             
             <div className={styles.rememberMe}>
               <input 

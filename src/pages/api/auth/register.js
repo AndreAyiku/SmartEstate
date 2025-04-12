@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import bcrypt from 'bcryptjs';
-import formidable from 'formidable';
+import { formidable } from 'formidable';
 import fs from 'fs';
 import { promisify } from 'util';
 
@@ -26,29 +26,33 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
-  
-  const form = new formidable.IncomingForm();
-  
+
+  // Initialize formidable with options
+  const form = formidable({
+    keepExtensions: true,
+    maxFileSize: 10 * 1024 * 1024, // 10MB limit for profile pictures
+  });
+
   try {
-    const [fields, files] = await new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        resolve([fields, files]);
-      });
-    });
+    // Parse the form using the new API
+    const [fields, files] = await form.parse(req);
     
-    const { username, password, email, userType } = fields;
-    
+    // Extract form data (note: fields are now arrays in formidable v3)
+    const username = fields.username ? fields.username[0] : undefined;
+    const password = fields.password ? fields.password[0] : undefined;
+    const email = fields.email ? fields.email[0] : undefined;
+    const userType = fields.userType ? fields.userType[0] : undefined;
+
     if (!username || !password || !email || !userType) {
       return res.status(400).json({ message: 'All fields are required' });
     }
-    
+
     // Check if username or email already exists
     const existingUser = await pool.query(
       'SELECT * FROM "user" WHERE username = $1 OR email = $2',
       [username, email]
     );
-    
+
     if (existingUser.rows.length > 0) {
       if (existingUser.rows[0].username === username) {
         return res.status(400).json({ message: 'Username already exists' });
@@ -56,25 +60,26 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Email already exists' });
       }
     }
-    
+
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    
+
     let profilePicture = null;
-    
-    // Process profile picture if provided
-    if (files.profilePicture && files.profilePicture.size > 0) {
-      const fileData = await readFile(files.profilePicture.filepath);
+
+    // Process profile picture if provided (files structure is different in v3)
+    const profilePicFile = files.profilePicture ? files.profilePicture[0] : null;
+    if (profilePicFile && profilePicFile.size > 0) {
+      const fileData = await readFile(profilePicFile.filepath);
       profilePicture = fileData;
     }
-    
+
     // Create new user
     await pool.query(
       'INSERT INTO "user" (username, password, email, user_type, profile_picture) VALUES ($1, $2, $3, $4, $5)',
       [username, hashedPassword, email, userType, profilePicture]
     );
-    
+
     return res.status(201).json({
       message: 'Registration successful! Please log in.'
     });
