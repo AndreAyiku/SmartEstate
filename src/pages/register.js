@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,11 +6,29 @@ import styles from '../styles/Auth.module.css';
 
 export default function Register() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [userType, setUserType] = useState('User');
+  const [profileImage, setProfileImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null);
   const router = useRouter();
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfileImage(file);
+      // Create preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,12 +42,20 @@ export default function Register() {
     }
 
     try {
+      // Create form data to handle file upload
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('userType', userType);
+      
+      if (profileImage) {
+        formData.append('profilePicture', profileImage);
+      }
+
       const response = await fetch('/api/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
+        body: formData,
       });
 
       const data = await response.json();
@@ -87,6 +113,31 @@ export default function Register() {
               required
             />
             
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className={styles.inputField}
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            
+            <label htmlFor="userType">Account Type</label>
+            <select
+              id="userType"
+              name="userType"
+              className={styles.inputField}
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+              required
+            >
+              <option value="User">Regular User</option>
+              <option value="Realtor">Realtor</option>
+            </select>
+            
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -112,6 +163,27 @@ export default function Register() {
               required
               minLength="6"
             />
+            
+            <label htmlFor="profile-picture">Profile Picture</label>
+            <div className={styles.profileUpload}>
+              <input
+                type="file"
+                id="profile-picture"
+                name="profile-picture"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleImageChange}
+                className={styles.fileInput}
+              />
+              <div className={styles.uploadButton} onClick={() => fileInputRef.current.click()}>
+                <i className='bx bx-upload'></i> Choose Image
+              </div>
+              {previewUrl && (
+                <div className={styles.imagePreview}>
+                  <img src={previewUrl} alt="Profile preview" />
+                </div>
+              )}
+            </div>
             
             <button 
               type="submit" 
