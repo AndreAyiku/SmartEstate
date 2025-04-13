@@ -10,87 +10,62 @@ export default function HomePage() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [properties, setProperties] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [propertyType, setPropertyType] = useState('');
+  const [priceRange, setPriceRange] = useState('');
+  const [bedrooms, setBedrooms] = useState('');
+  const [bathrooms, setBathrooms] = useState('');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  
   const router = useRouter();
 
+  // Fetch properties with search and filter parameters
+  const fetchProperties = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Build query string with filters
+      const queryParams = new URLSearchParams();
+      if (searchTerm) queryParams.append('searchTerm', searchTerm);
+      if (propertyType) queryParams.append('propertyType', propertyType);
+      if (priceRange) queryParams.append('priceRange', priceRange);
+      if (bedrooms) queryParams.append('bedrooms', bedrooms);
+      if (bathrooms) queryParams.append('bathrooms', bathrooms);
+      queryParams.append('page', currentPage);
+      
+      const response = await fetch(`/api/properties?${queryParams.toString()}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch properties');
+      }
+      
+      const data = await response.json();
+      setProperties(data.properties);
+      setTotalPages(data.pagination.totalPages);
+    } catch (err) {
+      console.error('Error fetching properties:', err);
+      setError('Failed to load properties. Please try again.');
+      setProperties([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch properties when component mounts or filters change
   useEffect(() => {
-    // Check if user is logged in
+    fetchProperties();
+  }, [currentPage, searchTerm, propertyType, priceRange, bedrooms, bathrooms]);
+
+  // Check if user is logged in
+  useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       setUser(JSON.parse(loggedInUser));
     }
-
-    // Fetch properties (mock data for now)
-    const mockProperties = [
-      {
-        id: 1,
-        title: "Modern Apartment in Downtown",
-        price: "$250,000",
-        location: "Downtown, City Center",
-        bedrooms: 2,
-        bathrooms: 1,
-        area: "1,200 sqft",
-        type: "Apartment",
-        image: "/property1.jpg"
-      },
-      {
-        id: 2,
-        title: "Luxury Villa with Pool",
-        price: "$750,000",
-        location: "Beachside, Ocean View",
-        bedrooms: 4,
-        bathrooms: 3,
-        area: "3,500 sqft",
-        type: "Villa",
-        image: "/property2.jpg"
-      },
-      {
-        id: 3,
-        title: "Cozy Studio for Rent",
-        price: "$1,200/month",
-        location: "University District",
-        bedrooms: 1,
-        bathrooms: 1,
-        area: "650 sqft",
-        type: "Studio",
-        image: "/property3.jpg"
-      },
-      {
-        id: 4,
-        title: "Family Home with Garden",
-        price: "$450,000",
-        location: "Suburban Area",
-        bedrooms: 3,
-        bathrooms: 2,
-        area: "2,000 sqft",
-        type: "House",
-        image: "/property4.jpg"
-      },
-      {
-        id: 5,
-        title: "Commercial Office Space",
-        price: "$2,500/month",
-        location: "Business District",
-        bedrooms: 0,
-        bathrooms: 2,
-        area: "1,800 sqft",
-        type: "Commercial",
-        image: "/property5.jpg"
-      },
-      {
-        id: 6,
-        title: "Renovated Townhouse",
-        price: "$350,000",
-        location: "Historic District",
-        bedrooms: 3,
-        bathrooms: 2.5,
-        area: "1,800 sqft",
-        type: "Townhouse",
-        image: "/property6.jpg"
-      }
-    ];
-    
-    setProperties(mockProperties);
   }, []);
 
   const handleLogout = () => {
@@ -120,11 +95,33 @@ export default function HomePage() {
     };
   }, [showDropdown]);
 
-  const filteredProperties = properties.filter(property => 
-    property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    property.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setCurrentPage(1); // Reset to first page when searching
+    fetchProperties();
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0); // Scroll to top when changing pages
+  };
+
+  // Handle adding to favorites
+  const handleAddToFavorite = async (propertyId) => {
+    // Check if user is logged in
+    if (!user) {
+      router.push('/login?redirect=properties');
+      return;
+    }
+    
+    try {
+      // Logic for adding to favorites would go here
+      // This would typically involve an API call to your backend
+      alert(`Property ${propertyId} added to favorites!`);
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -212,7 +209,7 @@ export default function HomePage() {
 
       <main className={styles.main}>
         <div className={styles.searchContainer}>
-          <div className={styles.searchBar}>
+          <form onSubmit={handleSearch} className={styles.searchBar}>
             <i className="bx bx-search"></i>
             <input
               type="text"
@@ -220,26 +217,39 @@ export default function HomePage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className={styles.searchButton}>Search</button>
-          </div>
+            <button type="submit" className={styles.searchButton}>Search</button>
+          </form>
           <div className={styles.searchFilters}>
-            <select className={styles.filterSelect}>
+            <select 
+              className={styles.filterSelect}
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+            >
               <option value="">Property Type</option>
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
-              <option value="villa">Villa</option>
-              <option value="townhouse">Townhouse</option>
-              <option value="commercial">Commercial</option>
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
+              <option value="Villa">Villa</option>
+              <option value="Townhouse">Townhouse</option>
+              <option value="Studio">Studio</option>
+              <option value="Commercial">Commercial</option>
             </select>
-            <select className={styles.filterSelect}>
+            <select 
+              className={styles.filterSelect}
+              value={priceRange}
+              onChange={(e) => setPriceRange(e.target.value)}
+            >
               <option value="">Price Range</option>
               <option value="0-100000">$0 - $100,000</option>
               <option value="100000-250000">$100,000 - $250,000</option>
               <option value="250000-500000">$250,000 - $500,000</option>
               <option value="500000-1000000">$500,000 - $1,000,000</option>
-              <option value="1000000+">$1,000,000+</option>
+              <option value="1000000">$1,000,000+</option>
             </select>
-            <select className={styles.filterSelect}>
+            <select 
+              className={styles.filterSelect}
+              value={bedrooms}
+              onChange={(e) => setBedrooms(e.target.value)}
+            >
               <option value="">Bedrooms</option>
               <option value="1">1+</option>
               <option value="2">2+</option>
@@ -247,7 +257,11 @@ export default function HomePage() {
               <option value="4">4+</option>
               <option value="5">5+</option>
             </select>
-            <select className={styles.filterSelect}>
+            <select 
+              className={styles.filterSelect}
+              value={bathrooms}
+              onChange={(e) => setBathrooms(e.target.value)}
+            >
               <option value="">Bathrooms</option>
               <option value="1">1+</option>
               <option value="2">2+</option>
@@ -257,13 +271,51 @@ export default function HomePage() {
         </div>
 
         <div className={styles.propertiesGrid}>
-          {filteredProperties.length > 0 ? (
-            filteredProperties.map((property) => (
+          {loading ? (
+            // Loading state
+            Array(6).fill(0).map((_, index) => (
+              <div key={`skeleton-${index}`} className={`${styles.propertyCard} ${styles.skeleton}`}>
+                <div className={styles.propertyImageContainer} style={{ backgroundColor: '#eee' }}></div>
+                <div className={styles.propertyInfo}>
+                  <div style={{ height: '24px', backgroundColor: '#eee', marginBottom: '10px', borderRadius: '4px' }}></div>
+                  <div style={{ height: '18px', backgroundColor: '#eee', marginBottom: '15px', width: '60%', borderRadius: '4px' }}></div>
+                  <div className={styles.propertyFeatures}>
+                    <div style={{ height: '16px', backgroundColor: '#eee', width: '30%', borderRadius: '4px' }}></div>
+                    <div style={{ height: '16px', backgroundColor: '#eee', width: '30%', borderRadius: '4px' }}></div>
+                    <div style={{ height: '16px', backgroundColor: '#eee', width: '30%', borderRadius: '4px' }}></div>
+                  </div>
+                  <div className={styles.propertyPriceRow}>
+                    <div style={{ height: '24px', backgroundColor: '#eee', width: '40%', borderRadius: '4px' }}></div>
+                    <div style={{ height: '36px', backgroundColor: '#eee', width: '30%', borderRadius: '6px' }}></div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : error ? (
+            // Error state
+            <div className={styles.noResults}>
+              <i className="bx bx-error-circle"></i>
+              <h3>Error loading properties</h3>
+              <p>{error}</p>
+              <button 
+                onClick={fetchProperties} 
+                className={styles.searchButton} 
+                style={{ marginTop: '15px' }}
+              >
+                Try Again
+              </button>
+            </div>
+          ) : properties.length > 0 ? (
+            // Properties list
+            properties.map((property) => (
               <div key={property.id} className={styles.propertyCard}>
                 <div className={styles.propertyImageContainer}>
                   <img src={property.image} alt={property.title} className={styles.propertyImage} />
                   <div className={styles.propertyType}>{property.type}</div>
-                  <button className={styles.favoriteButton}>
+                  <button 
+                    className={styles.favoriteButton}
+                    onClick={() => handleAddToFavorite(property.id)}
+                  >
                     <i className="bx bx-heart"></i>
                   </button>
                 </div>
@@ -287,6 +339,7 @@ export default function HomePage() {
               </div>
             ))
           ) : (
+            // No results
             <div className={styles.noResults}>
               <i className="bx bx-search-alt"></i>
               <h3>No properties found</h3>
@@ -295,13 +348,54 @@ export default function HomePage() {
           )}
         </div>
 
-        <div className={styles.pagination}>
-          <button className={styles.paginationButton}><i className="bx bx-chevron-left"></i></button>
-          <button className={`${styles.paginationButton} ${styles.active}`}>1</button>
-          <button className={styles.paginationButton}>2</button>
-          <button className={styles.paginationButton}>3</button>
-          <button className={styles.paginationButton}><i className="bx bx-chevron-right"></i></button>
-        </div>
+        {properties.length > 0 && totalPages > 1 && (
+          <div className={styles.pagination}>
+            <button 
+              className={styles.paginationButton}
+              onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <i className="bx bx-chevron-left"></i>
+            </button>
+            
+            {/* Display page numbers */}
+            {[...Array(totalPages)].map((_, i) => {
+              // Only show a few page numbers around the current page for better UX
+              const pageNum = i + 1;
+              if (
+                pageNum === 1 || 
+                pageNum === totalPages || 
+                (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+              ) {
+                return (
+                  <button 
+                    key={pageNum}
+                    className={`${styles.paginationButton} ${currentPage === pageNum ? styles.active : ''}`}
+                    onClick={() => handlePageChange(pageNum)}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              } 
+              // Show ellipsis for skipped pages
+              else if (
+                pageNum === currentPage - 2 || 
+                pageNum === currentPage + 2
+              ) {
+                return <span key={pageNum} className={styles.paginationButton}>...</span>;
+              }
+              return null;
+            })}
+            
+            <button 
+              className={styles.paginationButton}
+              onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <i className="bx bx-chevron-right"></i>
+            </button>
+          </div>
+        )}
       </main>
 
       <footer className={styles.footer}>

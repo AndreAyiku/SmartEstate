@@ -1,0 +1,485 @@
+/* styles/PropertyDetails.module.css */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    position: relative;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #0f172a;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo i {
+    font-size: 1.8rem;
+    color: #e65100;
+    margin-right: 10px;
+  }
+  
+  .navLink {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #e65100;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 40px;
+    background-color: #f9fafb;
+    min-height: 100vh;
+  }
+  
+  .breadcrumb {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  
+  .breadcrumb a {
+    color: #64748b;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    color: #e65100;
+    text-decoration: underline;
+  }
+  
+  .propertyDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .gallerySection {
+    width: 100%;
+  }
+  
+  .mainImageContainer {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .placeholderImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e8f0;
+    color: #94a3b8;
+  }
+  
+  .placeholderImage i {
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+  
+  .thumbnailsContainer {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .thumbnailItem {
+    width: 100px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+    flex-shrink: 0;
+    border: 3px solid transparent;
+  }
+  
+  .thumbnailItem:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .thumbnailItem.active {
+    opacity: 1;
+    border-color: #e65100;
+  }
+  
+  .thumbnailImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .detailsSection {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .mainDetails {
+    flex: 2;
+  }
+  
+  .titleSection {
+    margin-bottom: 25px;
+  }
+  
+  .propertyTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #1e293b;
+  }
+  
+  .propertyLocation {
+    display: flex;
+    align-items: center;
+    margin: 0 0 15px 0;
+    color: #64748b;
+    font-size: 1rem;
+  }
+  
+  .propertyLocation i {
+    color: #e65100;
+    margin-right: 6px;
+    font-size: 1.2rem;
+  }
+  
+  .propertyPrice {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e65100;
+  }
+  
+  .propertyFeatures {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .featureCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .featureCard i {
+    font-size: 1.8rem;
+    color: #e65100;
+    margin-bottom: 10px;
+  }
+  
+  .featureCard span {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+  }
+  
+  .featureCard p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  .descriptionSection, .amenitiesSection {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .descriptionSection h2, .amenitiesSection h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  
+  .descriptionSection p {
+    line-height: 1.7;
+    color: #334155;
+  }
+  
+  .amenitiesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .amenityItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  .amenityItem i {
+    color: #16a34a;
+    margin-right: 8px;
+    font-size: 1.2rem;
+  }
+  
+  .sidebarSection {
+    flex: 1;
+    max-width: 380px;
+  }
+  
+  .agentCard, .mapCard {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .agentCard h3, .mapCard h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  
+  .agentInfo {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .agentAvatar {
+    font-size: 3rem;
+    color: #94a3b8;
+    margin-right: 15px;
+  }
+  
+  .agentDetails h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: #334155;
+  }
+  
+  .agentDetails p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+  }
+  
+  .agentDetails p i {
+    margin-right: 8px;
+    color: #e65100;
+  }
+  
+  .agentActions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    border: none;
+    width: 100%;
+  }
+  
+  .primaryButton {
+    background-color: #e65100;
+    color: white;
+  }
+  
+  .primaryButton:hover {
+    background-color: #bf360c;
+    transform: translateY(-2px);
+  }
+  
+  .secondaryButton {
+    background-color: #e2e8f0;
+    color: #334155;
+  }
+  
+  .secondaryButton:hover {
+    background-color: #cbd5e1;
+    transform: translateY(-2px);
+  }
+  
+  .mapPlaceholder {
+    height: 200px;
+    background-color: #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+  }
+  
+  .mapPlaceholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .mapPlaceholder small {
+    font-size: 0.8rem;
+    max-width: 80%;
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  .footer {
+    background-color: #0f172a;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .loadingContainer, .errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e2e8f0;
+    border-top: 5px solid #e65100;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .errorContainer i {
+    font-size: 3rem;
+    color: #ef4444;
+    margin-bottom: 15px;
+  }
+  
+  .errorContainer h2 {
+    margin: 0 0 10px 0;
+    color: #334155;
+  }
+  
+  .errorContainer p {
+    color: #64748b;
+    margin-bottom: 20px;
+  }
+  
+  .errorContainer .primaryButton,
+  .errorContainer .secondaryButton {
+    max-width: 200px;
+    margin: 5px 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .detailsSection {
+      flex-direction: column;
+    }
+    
+    .sidebarSection {
+      max-width: 100%;
+    }
+    
+    .mainImageContainer {
+      height: 400px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar, .main {
+      padding: 15px 20px;
+    }
+    
+    .propertyFeatures {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .featureCard {
+      flex-basis: 45%;
+    }
+    
+    .mainImageContainer {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .propertyTitle {
+      font-size: 1.5rem;
+    }
+    
+    .propertyPrice {
+      font-size: 1.4rem;
+    }
+    
+    .featureCard {
+      flex-basis: 100%;
+    }
+    
+    .amenitiesList {
+      grid-template-columns: 1fr;
+    }
+    
+    .mainImageContainer {
+      height: 250px;
+    }
+  }
