@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../../styles/PropertyDetails.module.css';
+import styles from '../../../styles/PropertyDetails.module.css';
 
 export default function PropertyDetailsPage() {
   const router = useRouter();
