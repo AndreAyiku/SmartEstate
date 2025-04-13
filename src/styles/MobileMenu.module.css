@@ -1,0 +1,179 @@
+.mobileMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .mobileMenu {
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .mobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0f172a;
+    color: white;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo i {
+    font-size: 1.8rem;
+    color: #e65100;
+    margin-right: 10px;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .mobileMenuContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  .navigationLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .mobileNavLink {
+    color: #334155;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    transition: color 0.3s;
+  }
+  
+  .mobileNavLink:hover {
+    color: #e65100;
+  }
+  
+  .mobileMenuDivider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 20px 0;
+  }
+  
+  .userSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .welcomeUser {
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 10px;
+  }
+  
+  .userMenuItem {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: color 0.3s;
+    font-size: 1rem;
+  }
+  
+  .userMenuItem i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .userMenuItem:hover {
+    color: #e65100;
+  }
+  
+  .logoutButton {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 1rem;
+    padding: 10px 0;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .logoutButton i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .authButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .loginButton, .registerButton {
+    padding: 12px 0;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .loginButton {
+    background-color: transparent;
+    border: 1px solid #0f172a;
+    color: #0f172a;
+  }
+  
+  .loginButton:hover {
+    background-color: rgba(15, 23, 42, 0.05);
+  }
+  
+  .registerButton {
+    background-color: #e65100;
+    color: white;
+    border: 1px solid #e65100;
+  }
+  
+  .registerButton:hover {
+    background-color: #bf360c;
+  }

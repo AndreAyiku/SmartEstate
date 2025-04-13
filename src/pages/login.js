@@ -41,7 +41,7 @@ export default function Login() {
       localStorage.setItem('user', JSON.stringify(userWithoutPicture));
       
       // Redirect to home page
-      router.push('/');
+      router.push('/Home');
     } catch (err) {
       setError(err.message);
     } finally {

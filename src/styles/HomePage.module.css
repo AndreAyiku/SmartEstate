@@ -1,0 +1,584 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    position: relative;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #0f172a;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .navbarLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .navbarRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo i {
+    font-size: 1.8rem;
+    color: #e65100;
+    margin-right: 10px;
+  }
+  
+  .navLink {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #e65100;
+  }
+  
+  .loginButton, .registerButton {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .loginButton {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+  }
+  
+  .loginButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .registerButton {
+    background-color: white;
+    color: #0f172a;
+    border: 1px solid white;
+  }
+  
+  .registerButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .userMenu {
+    position: relative;
+  }
+  
+  .userProfile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .userProfile:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .welcomeUser {
+    font-weight: 500;
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 10px;
+    z-index: 1001;
+  }
+  
+  .dropdownItem {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #f5f5f5;
+    color: #e65100;
+  }
+  
+  .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 120px 40px 40px;
+    background-color: #f9fafb;
+    min-height: 100vh;
+  }
+  
+  .searchContainer {
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+  }
+  
+  .searchBar i {
+    color: #94a3b8;
+    font-size: 1.25rem;
+    margin-right: 10px;
+  }
+  
+  .searchBar input {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .searchBar input:focus {
+    outline: none;
+  }
+  
+  .searchButton {
+    background-color: #e65100;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .searchButton:hover {
+    background-color: #bf360c;
+  }
+  
+  .searchFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .filterSelect {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: white;
+    color: #334155;
+    font-size: 0.9rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l-4-4h8l-4 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+  }
+  
+  .filterSelect:focus {
+    outline: none;
+    border-color: #e65100;
+  }
+  
+  .propertiesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+  
+  .propertyCard {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .propertyCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .propertyImageContainer {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .propertyImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .propertyCard:hover .propertyImage {
+    transform: scale(1.05);
+  }
+  
+  .propertyType {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(15, 23, 42, 0.8);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .favoriteButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .favoriteButton i {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    transition: color 0.3s;
+  }
+  
+  .favoriteButton:hover {
+    background-color: #fef2f2;
+  }
+  
+  .favoriteButton:hover i {
+    color: #ef4444;
+  }
+  
+  .propertyInfo {
+    padding: 20px;
+  }
+  
+  .propertyTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #1e293b;
+    line-height: 1.4;
+  }
+  
+  .propertyLocation {
+    display: flex;
+    align-items: center;
+    margin: 0 0 15px 0;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+  
+  .propertyLocation i {
+    color: #e65100;
+    margin-right: 6px;
+    font-size: 1.1rem;
+  }
+  
+  .propertyFeatures {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .propertyFeatures span {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+  
+  .propertyFeatures i {
+    margin-right: 6px;
+    color: #94a3b8;
+    font-size: 1.1rem;
+  }
+  
+  .propertyPriceRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .propertyPrice {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #e65100;
+    margin: 0;
+  }
+  
+  .viewDetailsButton {
+    padding: 8px 16px;
+    background-color: #e65100;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+  }
+  
+  .viewDetailsButton:hover {
+    background-color: #bf360c;
+  }
+  
+  .noResults {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .noResults i {
+    font-size: 3rem;
+    color: #94a3b8;
+    margin-bottom: 15px;
+  }
+  
+  .noResults h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: #334155;
+  }
+  
+  .noResults p {
+    color: #64748b;
+    margin: 0;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 40px;
+  }
+  
+  .paginationButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .paginationButton:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+  }
+  
+  .paginationButton.active {
+    background-color: #e65100;
+    color: white;
+    border-color: #e65100;
+  }
+  
+  .footer {
+    background-color: #0f172a;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .footerTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #1a2332;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .socialIcons a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .socialIcons a:hover {
+    background: #e65100;
+  }
+  
+  .footerText {
+    color: white;
+    font-size: 1rem;
+    padding-top: 20px;
+  }
+  
+  .footerText span {
+    color: #e65100;
+    font-weight: bold;
+  }
+  
+  .footerText a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .propertiesGrid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+  
+    .navbarLeft {
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 15px 20px;
+    }
+  
+    .navbarLeft {
+      gap: 0.8rem;
+    }
+  
+    .navLink {
+      font-size: 0.9rem;
+    }
+  
+    .main {
+      padding: 100px 20px 40px;
+    }
+  
+    .searchFilters {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .filterSelect {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .logo {
+      font-size: 1.2rem;
+    }
+  
+    .logo i {
+      font-size: 1.5rem;
+    }
+  
+    .navbarLeft {
+      display: none;
+    }
+  
+    .propertiesGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .propertyCard {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  
+.mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  @media (max-width: 640px) {
+    .mobileMenuButton {
+      display: block;
+    }
+  }
