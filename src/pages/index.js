@@ -37,7 +37,7 @@ export default function Home() {
           <Link href="/" className={styles.logo}>
             <i className="bx bxs-building-house"></i> SmartEstate
           </Link>
-          <Link href="/" className={styles.navLink}>
+          <Link href="/Home" className={styles.navLink}>
             Home
           </Link>
           <Link href="/ai-chatbot" className={styles.navLink}>
