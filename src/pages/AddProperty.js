@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styles from '../../styles/AddProperty.module.css';
+import styles from '@/styles/AddProperty.module.css';
 import MobileMenu from '../pages/MobileMenu';
 
 export default function AddPropertyPage() {
