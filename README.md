@@ -1,6 +1,6 @@
-# SmartEstate - Smart Real Estate Management System
+# SmartEstate
 
-![SmartEstate Logo](https://via.placeholder.com/150) <!-- Replace with actual logo URL -->
+![SmartEstate Logo](https://raw.githubusercontent.com/AndreAyiku/SmartEstate/main/public/favicon.ico) 
 
 The **Smart Real Estate Management System**, or **SmartEstate**, is a cutting-edge platform designed to revolutionize how users find, rent, and buy properties. By leveraging AI and advanced technologies, the system offers personalized property suggestions based on individual user preferences, making the search process more efficient and tailored.
 
@@ -64,8 +64,8 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/smartestate.git
-   cd smartestate
+   git clone https://github.com/AndreAyiku/SmartEstate.git
+   cd SmartEstate
    ```
 
 2. Install dependencies:
@@ -79,7 +79,8 @@ Before you begin, ensure you have the following installed:
    Create a `.env.local` file in the root directory and add the following:
    ```env
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-   DATABASE_URL=your_tembo_database_url
+   DATABASE_URL=https://cloud.tembo.io/orgs/org_2uZh2gFOSut4RCTCaODNTXWCeP6/instances
+
    ```
 
 4. Run the development server:
@@ -141,7 +142,3 @@ Happy house hunting! 🏡
 
 ---
 
-### Notes:
-1. Replace placeholders like `your_google_maps_api_key`, `your_tembo_database_url`, and the logo URL with actual values.
-2. Ensure all team members have their correct GitHub usernames linked.
-3. Customize the README further based on specific project requirements or additional details.
