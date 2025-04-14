@@ -161,8 +161,8 @@ export default function AddPropertyPage() {
     setAdditionalImagePreviews(updatedPreviews);
   };
 
-  // Form submission handler
-  const handleSubmit = async (e) => {
+// Form submission handler
+const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validate form
@@ -206,7 +206,7 @@ export default function AddPropertyPage() {
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to add property');
+        throw new Error(data.message || data.error || 'Failed to add property');
       }
       
       // Success message
