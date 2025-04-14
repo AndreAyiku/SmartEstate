@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/AddProperty.module.css';
-import MobileMenu from './MobileMenu';
+import MobileMenu from '../pages/MobileMenu';
 
 export default function AddPropertyPage() {
   const [user, setUser] = useState(null);

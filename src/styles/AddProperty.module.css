@@ -1,0 +1,667 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    position: relative;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #0f172a;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .navbarLeft {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .navbarRight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo i {
+    font-size: 1.8rem;
+    color: #e65100;
+    margin-right: 10px;
+  }
+  
+  .navLink {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #e65100;
+  }
+  
+  .loginButton, .registerButton {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .loginButton {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+  }
+  
+  .loginButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .registerButton {
+    background-color: white;
+    color: #0f172a;
+    border: 1px solid white;
+  }
+  
+  .registerButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .userMenu {
+    position: relative;
+  }
+  
+  .userProfile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .userProfile:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .welcomeUser {
+    font-weight: 500;
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 10px;
+    z-index: 1001;
+  }
+  
+  .dropdownItem {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #f5f5f5;
+    color: #e65100;
+  }
+  
+  .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 120px 40px 40px;
+    background-color: #f9fafb;
+    min-height: 100vh;
+  }
+  
+  .pageHeader {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .pageTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+  }
+  
+  .pageDescription {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .propertyForm {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .formSection {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .sectionDescription {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-top: -15px;
+    margin-bottom: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  
+  .formRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .formLabel {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+  
+  .formInput, .formSelect, .formTextarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #334155;
+    background-color: #f8fafc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .formInput:focus, .formSelect:focus, .formTextarea:focus {
+    outline: none;
+    border-color: #e65100;
+    box-shadow: 0 0 0 2px rgba(230, 81, 0, 0.1);
+  }
+  
+  .formTextarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .formSelect {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l-4-4h8l-4 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+  }
+  
+  .featureRow {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .addFeatureButton, .removeFeatureButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .addFeatureButton {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 20px;
+    border: 1px dashed #cbd5e1;
+    margin-top: 10px;
+  }
+  
+  .addFeatureButton i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .addFeatureButton:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+  }
+  
+  .removeFeatureButton {
+    background-color: #fee2e2;
+    color: #ef4444;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  
+  .removeFeatureButton:hover {
+    background-color: #fecaca;
+  }
+  
+  .imageUploadSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .mainImageUpload, .additionalImagesUpload {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .imageTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .imageUploadLabel, .additionalImageUploadLabel {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .fileInput {
+    display: none;
+  }
+  
+  .uploadPlaceholder {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+  }
+  
+  .uploadPlaceholder i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .uploadPlaceholder span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .imageUploadLabel:hover .uploadPlaceholder {
+    border-color: #e65100;
+    color: #e65100;
+    background-color: #fff7ed;
+  }
+  
+  .imagePreviewContainer {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .imagePreviewContainer:hover .imageOverlay {
+    opacity: 1;
+  }
+  
+  .imageHelp {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-top: 10px;
+  }
+  
+  .imageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+  
+  .additionalImageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .additionalImagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .removeImageButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ef4444;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .removeImageButton:hover {
+    background-color: white;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .cancelButton, .submitButton {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .cancelButton {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .cancelButton:hover {
+    background-color: #e2e8f0;
+  }
+  
+  .submitButton {
+    background-color: #e65100;
+    color: white;
+    border: none;
+  }
+  
+  .submitButton:hover {
+    background-color: #bf360c;
+  }
+  
+  .submitButton:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+  }
+  
+  .alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .success {
+    background-color: #ecfdf5;
+    color: #047857;
+  }
+  
+  .error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+  }
+  
+  .alert i {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .footer {
+    background-color: #0f172a;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: auto;
+  }
+  
+  .footerTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #1a2332;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .socialIcons a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .socialIcons a:hover {
+    background: #e65100;
+  }
+  
+  .footerText {
+    color: white;
+    font-size: 1rem;
+    padding-top: 20px;
+  }
+  
+  .footerText span {
+    color: #e65100;
+    font-weight: bold;
+  }
+  
+  .footerText a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .formRow {
+      flex-wrap: wrap;
+    }
+    
+    .formRow .formGroup {
+      flex-basis: calc(50% - 10px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 15px 20px;
+    }
+    
+    .navbarLeft {
+      gap: 0.8rem;
+    }
+    
+    .navLink {
+      font-size: 0.9rem;
+    }
+    
+    .main {
+      padding: 100px 20px 40px;
+    }
+    
+    .formSection {
+      padding: 20px;
+    }
+    
+    .formRow {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .formRow .formGroup {
+      flex-basis: 100%;
+    }
+    
+    .imageUploadSection {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .logo {
+      font-size: 1.2rem;
+    }
+    
+    .logo i {
+      font-size: 1.5rem;
+    }
+    
+    .navbarLeft {
+      display: none;
+    }
+    
+    .mobileMenuButton {
+      display: block;
+    }
+    
+    .pageTitle {
+      font-size: 1.8rem;
+    }
+    
+    .featureRow {
+      flex-wrap: wrap;
+    }
+    
+    .featureRow .formGroup {
+      flex-basis: 100%;
+    }
+    
+    .formActions {
+      flex-direction: column;
+    }
+    
+    .cancelButton, .submitButton {
+      width: 100%;
+      justify-content: center;
+    }
+  }
