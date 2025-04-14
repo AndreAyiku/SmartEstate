@@ -48,6 +48,7 @@ This project is developed and maintained by the following team members:
 - **Gilbert Tetteh** ([gilberttetteh](https://github.com/gilberttetteh))
 - **Sedem Agudetse** ([sedemabla](https://github.com/sedemabla))
 - **Jason Agyeman-Darko** ([jadarko55](https://github.com/jadarko55))
+- **Lois Ofoe-Amesackey** ([LoisSackey](https://github.com/LoisSackey))
 
 ---
 
