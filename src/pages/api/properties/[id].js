@@ -33,7 +33,7 @@ export default function PropertyDetailsPage() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`/api/property/${id}`);
+      const response = await fetch(`/api/properties/${id}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch property details');
