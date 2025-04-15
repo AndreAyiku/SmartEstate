@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/PropertyDetails.module.css';
+import homeStyles from '../../styles/Home.module.css';
 
 export default function PropertyDetailsPage() {
   const router = useRouter();
@@ -56,8 +57,8 @@ export default function PropertyDetailsPage() {
       return;
     }
     
-    // Logic to contact realtor (e.g., open a modal, redirect to messages page)
-    alert(`Contact ${property.realtor.name} at ${property.realtor.email}`);
+    // Navigate to realtor's profile page
+    router.push(`/realtors/${property.realtor.id}`);
   };
 
   const handleScheduleViewing = () => {
@@ -69,6 +70,12 @@ export default function PropertyDetailsPage() {
     
     // Logic to schedule a viewing
     router.push(`/schedule-viewing/${id}`);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    router.push('/');
   };
 
   if (loading) {
@@ -125,23 +132,50 @@ export default function PropertyDetailsPage() {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <nav className={styles.navbar}>
-        <div className={styles.navbarLeft}>
-          <Link href="/" className={styles.logo}>
+      {/* Using the navbar from Home.module.css */}
+      <nav className={homeStyles.navbar}>
+        <div className={homeStyles.navbarLeft}>
+          <Link href="/" className={homeStyles.logo}>
             <i className="bx bxs-building-house"></i> SmartEstate
           </Link>
-        </div>
-        <div className={styles.navbarRight}>
-          <Link href="/" className={styles.navLink}>
-            Back to Listings
+          <Link href="/" className={homeStyles.navLink}>
+            Home
           </Link>
+          <Link href="/properties" className={homeStyles.navLink}>
+            Properties
+          </Link>
+          <Link href="/about" className={homeStyles.navLink}>
+            About Us
+          </Link>
+          <Link href="/contact" className={homeStyles.navLink}>
+            Contact
+          </Link>
+        </div>
+        <div className={homeStyles.navbarRight}>
+          {user ? (
+            <>
+              <span className={homeStyles.welcomeUser}>Welcome, {user.name}</span>
+              <button onClick={handleLogout} className={homeStyles.logoutButton}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={homeStyles.loginButton}>
+                Login
+              </Link>
+              <Link href="/register" className={homeStyles.registerButton}>
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </nav>
 
       <main className={styles.main}>
         <div className={styles.breadcrumb}>
           <Link href="/">Home</Link> {' > '} 
-          <Link href="/">Properties</Link> {' > '} 
+          <Link href="/properties">Properties</Link> {' > '} 
           <span>{property.title}</span>
         </div>
 
@@ -210,7 +244,7 @@ export default function PropertyDetailsPage() {
                 </div>
                 <div className={styles.featureCard}>
                   <i className="bx bx-calendar"></i>
-                  <span>{property.yearBuilt || 'N/A'}</span>
+                  <span>{property.year_built || 'N/A'}</span>
                   <p>Year Built</p>
                 </div>
               </div>
@@ -233,6 +267,31 @@ export default function PropertyDetailsPage() {
                   </div>
                 </div>
               )}
+              
+              {/* Property Gallery Section */}
+              {property.images && property.images.length > 1 && (
+                <div className={styles.propertyGallerySection}>
+                  <h2>Property Gallery</h2>
+                  <div className={styles.galleryGrid}>
+                    {property.images.map((image, index) => (
+                      <div 
+                        key={index} 
+                        className={styles.galleryItem}
+                        onClick={() => setActiveImage(index)}
+                      >
+                        <img 
+                          src={image.url} 
+                          alt={`Property view ${index + 1}`}
+                          className={styles.galleryImage} 
+                        />
+                        {image.is_primary && (
+                          <span className={styles.primaryBadge}>Main</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.sidebarSection}>
@@ -240,7 +299,15 @@ export default function PropertyDetailsPage() {
                 <h3>Contact Agent</h3>
                 <div className={styles.agentInfo}>
                   <div className={styles.agentAvatar}>
-                    <i className="bx bx-user-circle"></i>
+                    {property.realtor.profile_picture ? (
+                      <img 
+                        src={property.realtor.profile_picture} 
+                        alt={property.realtor.name}
+                        className={styles.agentImage}
+                      />
+                    ) : (
+                      <i className="bx bx-user-circle"></i>
+                    )}
                   </div>
                   <div className={styles.agentDetails}>
                     <h4>{property.realtor.name}</h4>
@@ -253,7 +320,7 @@ export default function PropertyDetailsPage() {
                     className={styles.primaryButton}
                     onClick={handleContactRealtor}
                   >
-                    <i className="bx bx-message-detail"></i> Contact Realtor
+                    <i className="bx bx-user"></i> View Realtor Profile
                   </button>
                   <button 
                     className={styles.secondaryButton}
