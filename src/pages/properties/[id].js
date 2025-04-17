@@ -58,7 +58,7 @@ export default function PropertyDetailsPage() {
     }
     
     // Navigate to realtor's profile page
-    router.push(`/realtors/${property.realtor.id}`);
+    router.push(`/profile/${property.realtor.id}`);
   };
 
   const handleScheduleViewing = () => {
