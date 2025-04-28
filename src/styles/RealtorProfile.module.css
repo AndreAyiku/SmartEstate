@@ -64,7 +64,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  margin-top: -100px;
+  margin-top: 50px;
   position: relative;
   z-index: 1;
 }
@@ -110,8 +110,8 @@
 }
 
 .profileAvatar {
-  width: 150px;
-  height: 150px;
+  width: 180px;  /* Increased from 150px */
+  height: 180px; /* Increased from 150px */
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -121,7 +121,7 @@
   margin-right: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 4px solid #fff;
-  margin-top: -55px;
+  margin-top: -10px; /* Adjusted from -55px */
   position: relative;
 }
 
@@ -847,9 +847,9 @@
   }
   
   .profileAvatar {
-    width: 120px;
-    height: 120px;
-    margin-top: -35px;
+    width: 140px;  /* Increased from 120px */
+    height: 140px; /* Increased from 120px */
+    margin-top: -70px; /* Adjusted from -35px */
   }
   
   .profileDetails h1 {
@@ -874,4 +874,5 @@
   .profileBanner {
     height: 180px;
   }
+  
 }

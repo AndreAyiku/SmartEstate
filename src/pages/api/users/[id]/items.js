@@ -53,13 +53,10 @@ export default async function handler(req, res) {
           CONCAT(p.area, ' sq ft') AS area,
           p.property_type AS type,
           p.status,
-          CASE 
-            WHEN pi.id IS NOT NULL THEN CONCAT('/api/image/property/', pi.id)
-            ELSE '/images/placeholder-property.jpg'
-          END AS image
+          encode(pi.image_data, 'base64') as image_base64
         FROM "property" p
         LEFT JOIN (
-          SELECT DISTINCT ON (property_id) id, property_id
+          SELECT DISTINCT ON (property_id) id, property_id, image_data
           FROM "property_image"
           WHERE is_primary = true
           ORDER BY property_id, id
@@ -72,16 +69,17 @@ export default async function handler(req, res) {
       const propertiesResult = await pool.query(propertiesQuery, [id, limit, offset]);
       
       // Format property prices with currency
-      const properties = propertiesResult.rows.map(property => {
-        return {
-          ...property,
-          price: new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0,
-          }).format(property.price)
-        };
-      });
+      const properties = propertiesResult.rows.map(property => ({
+        ...property,
+        price: new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0,
+        }).format(property.price),
+        image: property.image_base64 
+          ? `data:image/jpeg;base64,${property.image_base64}`
+          : '/images/placeholder-property.jpg'
+      }));
       
       res.status(200).json({
         items: properties,
@@ -119,15 +117,12 @@ export default async function handler(req, res) {
           CONCAT(p.area, ' sq ft') AS area,
           p.property_type AS type,
           p.status,
-          CASE 
-            WHEN pi.id IS NOT NULL THEN CONCAT('/api/image/property/', pi.id)
-            ELSE '/images/placeholder-property.jpg'
-          END AS image,
+          encode(pi.image_data, 'base64') as image_base64,
           uf.created_at AS favorited_at
         FROM "user_favorite" uf
         JOIN "property" p ON uf.property_id = p.id
         LEFT JOIN (
-          SELECT DISTINCT ON (property_id) id, property_id
+          SELECT DISTINCT ON (property_id) id, property_id, image_data
           FROM "property_image"
           WHERE is_primary = true
           ORDER BY property_id, id
@@ -140,16 +135,17 @@ export default async function handler(req, res) {
       const favoritesResult = await pool.query(favoritesQuery, [id, limit, offset]);
       
       // Format property prices with currency
-      const favorites = favoritesResult.rows.map(property => {
-        return {
-          ...property,
-          price: new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            maximumFractionDigits: 0,
-          }).format(property.price)
-        };
-      });
+      const favorites = favoritesResult.rows.map(property => ({
+        ...property,
+        price: new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0,
+        }).format(property.price),
+        image: property.image_base64 
+          ? `data:image/jpeg;base64,${property.image_base64}`
+          : '/images/placeholder-property.jpg'
+      }));
       
       res.status(200).json({
         items: favorites,

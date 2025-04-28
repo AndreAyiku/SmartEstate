@@ -17,23 +17,27 @@ export default async function handler(req, res) {
         u.username AS name, 
         u.email, 
         u.user_type,
-        CASE 
-          WHEN u.profile_picture IS NOT NULL THEN CONCAT('/api/image/user/', u.id)
-          ELSE NULL
-        END AS profile_picture,
-        COALESCE(u.bio, 'No biography provided.') AS bio
+        u.bio,
+        encode(u.profile_picture, 'base64') as profile_picture_base64
       FROM "user" u
       WHERE u.id = $1
     `;
     
     const userResult = await pool.query(userQuery, [id]);
     
+    // Update the response formatting
     if (userResult.rows.length === 0) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ message: 'User not found' });
     }
     
     const user = userResult.rows[0];
-    
+    const formattedUser = {
+      ...user,
+      profile_picture: user.profile_picture_base64 
+        ? `data:image/jpeg;base64,${user.profile_picture_base64}` 
+        : null,
+    };
+
     // If user is a realtor, get additional realtor-specific data
     if (user.user_type === 'Realtor') {
       // Query to get realtor reviews
@@ -51,7 +55,7 @@ export default async function handler(req, res) {
       `;
       
       const reviewsResult = await pool.query(reviewsQuery, [id]);
-      user.reviews = reviewsResult.rows;
+      formattedUser.reviews = reviewsResult.rows;
       
       // Query to count total properties by this realtor
       const propertiesCountQuery = `
@@ -61,7 +65,7 @@ export default async function handler(req, res) {
       `;
       
       const propertiesCountResult = await pool.query(propertiesCountQuery, [id]);
-      user.totalProperties = parseInt(propertiesCountResult.rows[0].total_properties);
+      formattedUser.totalProperties = parseInt(propertiesCountResult.rows[0].total_properties);
       
       // Query to get total sales (properties with status 'Sold')
       const salesCountQuery = `
@@ -71,7 +75,7 @@ export default async function handler(req, res) {
       `;
       
       const salesCountResult = await pool.query(salesCountQuery, [id]);
-      user.totalSales = parseInt(salesCountResult.rows[0].total_sales);
+      formattedUser.totalSales = parseInt(salesCountResult.rows[0].total_sales);
       
       // Query to get average rating
       const ratingQuery = `
@@ -81,7 +85,7 @@ export default async function handler(req, res) {
       `;
       
       const ratingResult = await pool.query(ratingQuery, [id]);
-      user.averageRating = parseFloat(ratingResult.rows[0].average_rating);
+      formattedUser.averageRating = parseFloat(ratingResult.rows[0].average_rating);
     } else {
       // For regular users, get their favorites count
       const favoritesCountQuery = `
@@ -91,7 +95,7 @@ export default async function handler(req, res) {
       `;
       
       const favoritesCountResult = await pool.query(favoritesCountQuery, [id]);
-      user.totalFavorites = parseInt(favoritesCountResult.rows[0].total_favorites);
+      formattedUser.totalFavorites = parseInt(favoritesCountResult.rows[0].total_favorites);
       
       // Get count of property viewings
       const viewingsCountQuery = `
@@ -101,11 +105,11 @@ export default async function handler(req, res) {
       `;
       
       const viewingsCountResult = await pool.query(viewingsCountQuery, [id]);
-      user.totalViewings = parseInt(viewingsCountResult.rows[0].total_viewings);
+      formattedUser.totalViewings = parseInt(viewingsCountResult.rows[0].total_viewings);
     }
     
     // Return the combined user data
-    res.status(200).json(user);
+    return res.status(200).json(formattedUser);
   } catch (error) {
     console.error('Error fetching user details:', error);
     res.status(500).json({ error: 'Failed to fetch user details' });
