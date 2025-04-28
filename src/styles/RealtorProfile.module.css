@@ -1,708 +1,877 @@
 .container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f9fa;
-    font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* New background banner section */
+.profileBanner {
+  width: 100%;
+  height: 250px;
+  background-color: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.defaultBanner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff8c00, #ff6b01);
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+.defaultBanner i {
+  margin-right: 0.5rem;
+}
+
+.changeBannerButton {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.changeBannerButton:hover {
+  background-color: #fff;
+}
+
+.changeBannerButton i {
+  margin-right: 6px;
+  font-size: 1.1rem;
+  color: #ff8c00;
+}
+
+.main {
+  flex: 1;
+  padding: 0 2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: -100px;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 0 1rem;
+}
+
+.breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: #ffe0b2;
+}
+
+.breadcrumb span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.profileContainer {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.profileHeader {
+  display: flex;
+  padding: 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.profileAvatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+  margin-right: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 4px solid #fff;
+  margin-top: -55px;
+  position: relative;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.changeAvatarButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.changeAvatarButton:hover {
+  background-color: #e67e00;
+}
+
+.defaultAvatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: #adb5bd;
+}
+
+.profileDetails {
+  flex: 1;
+}
+
+.profileActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.profileDetails h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+.userTitle {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.contactInfo {
+  margin-bottom: 1.5rem;
+}
+
+.contactInfo p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  color: #495057;
+}
+
+.contactInfo p i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #ff8c00;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primaryButton:hover {
+  background-color: #e67e00;
+}
+
+.primaryButton i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.secondaryButton:hover {
+  background-color: #5a6268;
+}
+
+.secondaryButton i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.statsCards {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 30%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.statIcon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 140, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.statIcon i {
+  font-size: 1.5rem;
+  color: #ff8c00;
+}
+
+.statContent h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #212529;
+}
+
+.statContent p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.aboutSection {
+  padding: 2rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.aboutSection h2 {
+  color: #212529;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.aboutSection h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff8c00;
+}
+
+.aboutSection p {
+  color: #495057;
+  line-height: 1.7;
+}
+
+.itemsSection {
+  padding: 2rem;
+}
+
+.itemsSection h2 {
+  color: #212529;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.itemsSection h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff8c00;
+}
+
+.itemsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.propertyCard {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.propertyImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.propertyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.propertyType {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.favoriteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.favoriteButton:hover {
+  background-color: #fff;
+}
+
+.favoriteButton i {
+  font-size: 1.2rem;
+  color: #ff8c00;
+}
+
+.propertyInfo {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #212529;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.propertyLocation {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.propertyLocation i {
+  margin-right: 0.5rem;
+}
+
+.propertyFeatures {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: #495057;
+  font-size: 0.85rem;
+}
+
+.propertyFeatures span {
+  display: flex;
+  align-items: center;
+}
+
+.propertyFeatures i {
+  margin-right: 0.3rem;
+  font-size: 1rem;
+  color: #ff8c00;
+}
+
+.propertyPriceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.propertyPrice {
+  color: #ff8c00;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.viewDetailsButton {
+  background-color: #ff8c00;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.viewDetailsButton:hover {
+  background-color: #e67e00;
+}
+
+.noItems {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.noItems i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #adb5bd;
+}
+
+.noItems h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paginationButton:hover {
+  background-color: #f8f9fa;
+}
+
+.paginationButton.active {
+  background-color: #ff8c00;
+  color: #fff;
+  border-color: #ff8c00;
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reviewsSection {
+  padding: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.reviewsSection h2 {
+  color: #212529;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.reviewsSection h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff8c00;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reviewCard {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.reviewCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.reviewerInfo h4 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+.reviewRating {
+  display: flex;
+  color: #ffc107;
+}
+
+.reviewDate {
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.reviewText {
+  color: #495057;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 140, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: #ff8c00;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-    color: #6c757d;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.errorContainer i {
+  font-size: 3rem;
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.errorContainer h2 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+.errorContainer p {
+  color: #6c757d;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+.activitySection {
+  padding: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.activitySection h2 {
+  color: #212529;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.activitySection h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff8c00;
+}
+
+.activityList {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.viewAllButton {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #ff8c00;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.viewAllButton i {
+  margin-left: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.viewAllButton:hover i {
+  transform: translateX(3px);
+}
+
+.welcomeUser {
+  color: #212529;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+.logoutButton {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.footer {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+}
+
+.editButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.editButton:hover {
+  background-color: #5a6268;
+}
+
+.editButton i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .itemsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .breadcrumb a {
-    color: #6c757d;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  
-  .breadcrumb a:hover {
-    color: #007bff;
-  }
-  
-  .breadcrumb span {
-    color: #212529;
-    font-weight: 600;
-  }
-  
-  .realtorProfileContainer {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  
+}
+
+@media (max-width: 768px) {
   .profileHeader {
-    display: flex;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
+
   .profileAvatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e9ecef;
-    margin-right: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profileImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .defaultAvatar {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: #adb5bd;
-  }
-  
-  .profileDetails {
-    flex: 1;
-  }
-  
-  .profileDetails h1 {
-    margin: 0;
-    font-size: 2rem;
-    color: #212529;
-    margin-bottom: 0.5rem;
-  }
-  
-  .realtorTitle {
-    color: #6c757d;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .contactInfo {
+    margin-right: 0;
     margin-bottom: 1.5rem;
+  }
+
+  .statsCards {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .statCard {
+    width: 100%;
+  }
+
+  .itemsGrid {
+    grid-template-columns: 1fr;
   }
   
   .contactInfo p {
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    color: #495057;
-  }
-  
-  .contactInfo p i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-    color: #007bff;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .primaryButton {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: 600;
   }
   
-  .primaryButton:hover {
-    background-color: #0069d9;
-  }
-  
-  .primaryButton i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-  }
-  
-  .secondaryButton {
-    display: inline-flex;
-    align-items: center;
+  .profileActions {
     justify-content: center;
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: 600;
-    text-decoration: none;
   }
   
-  .secondaryButton:hover {
-    background-color: #5a6268;
+  .main {
+    margin-top: -50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 0 1rem 1rem;
   }
   
-  .secondaryButton i {
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
+  .profileHeader {
+    padding: 1.5rem 1rem;
   }
   
-  .statsCards {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e9ecef;
+  .profileAvatar {
+    width: 120px;
+    height: 120px;
+    margin-top: -35px;
   }
   
-  .statCard {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    width: 30%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .statCard:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .statIcon {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 123, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1rem;
-  }
-  
-  .statIcon i {
+  .profileDetails h1 {
     font-size: 1.5rem;
-    color: #007bff;
   }
   
-  .statContent h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #212529;
-  }
-  
-  .statContent p {
-    margin: 0;
-    color: #6c757d;
-    font-size: 0.9rem;
-  }
-  
-  .aboutSection {
-    padding: 2rem;
-    border-bottom: 1px solid #e9ecef;
-  }
-  
-  .aboutSection h2 {
-    color: #212529;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    position: relative;
-    padding-bottom: 0.75rem;
-  }
-  
-  .aboutSection h2:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: #007bff;
-  }
-  
-  .aboutSection p {
-    color: #495057;
-    line-height: 1.7;
-  }
-  
-  .propertiesSection {
-    padding: 2rem;
-  }
-  
-  .propertiesSection h2 {
-    color: #212529;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-bottom: 0.75rem;
-  }
-  
-  .propertiesSection h2:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: #007bff;
-  }
-  
-  .propertiesGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  
-  .propertyCard {
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .propertyCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .propertyImageContainer {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-  }
-  
-  .propertyImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .propertyType {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-  
-  .favoriteButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .favoriteButton:hover {
-    background-color: #fff;
-  }
-  
-  .favoriteButton i {
-    font-size: 1.2rem;
-    color: #dc3545;
-  }
-  
-  .propertyInfo {
-    padding: 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .propertyTitle {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #212529;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .propertyLocation {
-    color: #6c757d;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-  }
-  
-  .propertyLocation i {
-    margin-right: 0.5rem;
-  }
-  
-  .propertyFeatures {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    color: #495057;
-    font-size: 0.85rem;
-  }
-  
-  .propertyFeatures span {
-    display: flex;
-    align-items: center;
-  }
-  
-  .propertyFeatures i {
-    margin-right: 0.3rem;
-    font-size: 1rem;
-    color: #007bff;
-  }
-  
-  .propertyPriceRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-  }
-  
-  .propertyPrice {
-    color: #007bff;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0;
-  }
-  
-  .viewDetailsButton {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: background-color 0.2s;
-  }
-  
-  .viewDetailsButton:hover {
-    background-color: #0069d9;
-  }
-  
-  .noProperties {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-  }
-  
-  .noProperties i {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #adb5bd;
-  }
-  
-  .noProperties h3 {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    color: #495057;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  .paginationButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin: 0 0.25rem;
-    border-radius: 4px;
-    border: 1px solid #dee2e6;
-    background-color: #fff;
-    color: #495057;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .paginationButton:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .paginationButton.active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-  }
-  
-  .paginationButton:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
+  .statsCards,
+  .aboutSection,
+  .itemsSection,
   .reviewsSection {
-    padding: 2rem;
-    border-top: 1px solid #e9ecef;
-  }
-  
-  .reviewsSection h2 {
-    color: #212529;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-bottom: 0.75rem;
-  }
-  
-  .reviewsSection h2:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background-color: #007bff;
-  }
-  
-  .reviewsList {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .reviewCard {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s;
-  }
-  
-  .reviewCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 1rem;
   }
   
   .reviewHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    align-items: flex-start;
-  }
-  
-  .reviewerInfo h4 {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    color: #212529;
-  }
-  
-  .reviewRating {
-    display: flex;
-    color: #ffc107;
+    flex-direction: column;
   }
   
   .reviewDate {
-    color: #6c757d;
-    font-size: 0.85rem;
+    margin-top: 0.5rem;
   }
   
-  .reviewText {
-    color: #495057;
-    line-height: 1.7;
-    margin: 0;
+  .profileBanner {
+    height: 180px;
   }
-  
-  .loadingContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 2rem;
-  }
-  
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 123, 255, 0.1);
-    border-radius: 50%;
-    border-left-color: #007bff;
-    animation: spin 1s linear infinite;
-    margin-bottom: 1rem;
-  }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .errorContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .errorContainer i {
-    font-size: 3rem;
-    color: #dc3545;
-    margin-bottom: 1rem;
-  }
-  
-  .errorContainer h2 {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    color: #212529;
-  }
-  
-  .errorContainer p {
-    color: #6c757d;
-    margin-bottom: 2rem;
-    text-align: center;
-    max-width: 600px;
-  }
-  
-  .welcomeUser {
-    color: #212529;
-    font-weight: 500;
-    margin-right: 1rem;
-  }
-  
-  .logoutButton {
-    background-color: transparent;
-    color: #dc3545;
-    border: 1px solid #dc3545;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .logoutButton:hover {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  .footer {
-    background-color: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 992px) {
-    .propertiesGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .profileHeader {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .profileAvatar {
-      margin-right: 0;
-      margin-bottom: 1.5rem;
-    }
-  
-    .statsCards {
-      flex-direction: column;
-      gap: 1rem;
-    }
-  
-    .statCard {
-      width: 100%;
-    }
-  
-    .propertiesGrid {
-      grid-template-columns: 1fr;
-    }
-    
-    .contactInfo p {
-      justify-content: center;
-    }
-    
-    .buttonGroup {
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .main {
-      padding: 1rem;
-    }
-    
-    .profileHeader {
-      padding: 1.5rem 1rem;
-    }
-    
-    .profileAvatar {
-      width: 120px;
-      height: 120px;
-    }
-    
-    .profileDetails h1 {
-      font-size: 1.5rem;
-    }
-    
-    .statsCards,
-    .aboutSection,
-    .propertiesSection,
-    .reviewsSection {
-      padding: 1.5rem 1rem;
-    }
-    
-    .reviewHeader {
-      flex-direction: column;
-    }
-    
-    .reviewDate {
-      margin-top: 0.5rem;
-    }
-  }
+}

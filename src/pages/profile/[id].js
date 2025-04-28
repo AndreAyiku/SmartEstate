@@ -89,7 +89,7 @@ export default function ProfilePage() {
   };
   
   const handleAddProperty = () => {
-    router.push('/add-property');
+    router.push('/AddProperty');
   };
   
   const handlePageChange = (page) => {
