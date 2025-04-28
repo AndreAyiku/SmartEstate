@@ -36,9 +36,16 @@ export default function Login() {
         throw new Error(data.message || 'Login failed');
       }
 
-      // Store user info in localStorage WITHOUT the profile picture data
+      // Store user info in localStorage
       const { profile_picture, ...userWithoutPicture } = data.user;
-      localStorage.setItem('user', JSON.stringify(userWithoutPicture));
+
+      // Ensure we have the user ID explicitly included
+      const userToStore = {
+        id: data.user.id, // Make sure ID is explicitly included
+        ...userWithoutPicture
+      };
+
+      localStorage.setItem('user', JSON.stringify(userToStore));
       
       // Redirect to home page
       router.push('/Home');

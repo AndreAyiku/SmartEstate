@@ -5,6 +5,9 @@ import styles from '../styles/MobileMenu.module.css';
 const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
   if (!isOpen) return null;
 
+  // Get user ID directly from user object
+  const userId = user?.id;
+
   return (
     <div className={styles.mobileMenuOverlay}>
       <div className={styles.mobileMenu}>
@@ -44,7 +47,11 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
               <Link href="/dashboard" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-dashboard"></i> Dashboard
               </Link>
-              <Link href="/profile" className={styles.userMenuItem} onClick={onClose}>
+              <Link 
+                href={userId ? `/profile/${userId}` : '/profile'} 
+                className={styles.userMenuItem} 
+                onClick={onClose}
+              >
                 <i className="bx bxs-user"></i> Profile
               </Link>
               <Link href="/my-properties" className={styles.userMenuItem} onClick={onClose}>

@@ -41,12 +41,17 @@ export default async function handler(req, res) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     
-    // Return user data (excluding password)
+    // Return user data with explicit id field
     const { password: _, ...userData } = user;
-    
     return res.status(200).json({
       message: 'Login successful',
-      user: userData
+      user: {
+        id: user.id, // Ensure id is included
+        username: user.username,
+        email: user.email,
+        user_type: user.user_type,
+        ...userData
+      }
     });
   } catch (error) {
     console.error('Login error:', error);
