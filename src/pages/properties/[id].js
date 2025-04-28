@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/PropertyDetails.module.css';
 import homeStyles from '../../styles/Home.module.css';
+import Navigation from '@/components/Navigation';
 
 export default function PropertyDetailsPage() {
   const router = useRouter();
@@ -86,6 +87,7 @@ export default function PropertyDetailsPage() {
           <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
         </Head>
+        <Navigation />
         
         <div className={styles.loadingContainer}>
           <div className={styles.spinner}></div>
@@ -103,6 +105,7 @@ export default function PropertyDetailsPage() {
           <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
         </Head>
+        <Navigation />
         
         <div className={styles.errorContainer}>
           <i className="bx bx-error-circle"></i>
@@ -132,45 +135,7 @@ export default function PropertyDetailsPage() {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      {/* Using the navbar from Home.module.css */}
-      <nav className={homeStyles.navbar}>
-        <div className={homeStyles.navbarLeft}>
-          <Link href="/" className={homeStyles.logo}>
-            <i className="bx bxs-building-house"></i> SmartEstate
-          </Link>
-          <Link href="/" className={homeStyles.navLink}>
-            Home
-          </Link>
-          <Link href="/properties" className={homeStyles.navLink}>
-            Properties
-          </Link>
-          <Link href="/about" className={homeStyles.navLink}>
-            About Us
-          </Link>
-          <Link href="/contact" className={homeStyles.navLink}>
-            Contact
-          </Link>
-        </div>
-        <div className={homeStyles.navbarRight}>
-          {user ? (
-            <>
-              <span className={homeStyles.welcomeUser}>Welcome, {user.name}</span>
-              <button onClick={handleLogout} className={homeStyles.logoutButton}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link href="/login" className={homeStyles.loginButton}>
-                Login
-              </Link>
-              <Link href="/register" className={homeStyles.registerButton}>
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-      </nav>
+      <Navigation />
 
       <main className={styles.main}>
         <div className={styles.breadcrumb}>

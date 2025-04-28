@@ -8,10 +8,7 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
   
   if (!isOpen) return null;
   
-  // Log the user object for debugging
-  console.log("MobileMenu - User object:", user);
-  
-  // Function to handle profile navigation - similar to handleContactRealtor
+  // Function to handle profile navigation
   const handleProfileClick = (e) => {
     e.preventDefault();
     if (user && user.id) {
@@ -41,9 +38,6 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
             <Link href="/" className={styles.mobileNavLink} onClick={onClose}>
               Home
             </Link>
-            <Link href="/ai-chatbot" className={styles.mobileNavLink} onClick={onClose}>
-              AI Chatbot
-            </Link>
             <Link href="/maps" className={styles.mobileNavLink} onClick={onClose}>
               Maps
             </Link>
@@ -64,7 +58,6 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
                 <i className="bx bxs-dashboard"></i> Dashboard
               </Link>
               
-              {/* Use the same approach as handleContactRealtor */}
               <button 
                 className={styles.userMenuItem} 
                 onClick={handleProfileClick}

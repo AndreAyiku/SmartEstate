@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
+import Navigation from '@/components/Navigation';
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -32,48 +33,7 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <nav className={styles.navbar}>
-        <div className={styles.navbarLeft}>
-          <Link href="/" className={styles.logo}>
-            <i className="bx bxs-building-house"></i> SmartEstate
-          </Link>
-          <Link href="/Home" className={styles.navLink}>
-            Home
-          </Link>
-          <Link href="/ai-chatbot" className={styles.navLink}>
-            AI Chatbot
-          </Link>
-          <Link href="/maps" className={styles.navLink}>
-            Maps
-          </Link>
-          <Link href="/properties" className={styles.navLink}>
-            Properties
-          </Link>
-          <Link href="/favorites" className={styles.navLink}>
-            Favorites
-          </Link>
-        </div>
-
-        <div className={styles.navbarRight}>
-          {user ? (
-            <>
-              <span className={styles.welcomeUser}>Welcome, {user.username}</span>
-              <button onClick={handleLogout} className={styles.logoutButton}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link href="/login" className={styles.loginButton}>
-                Login
-              </Link>
-              <Link href="/register" className={styles.registerButton}>
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Background Video */}
       <video className={styles.videoBg} autoPlay loop muted playsInline>

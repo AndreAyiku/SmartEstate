@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/AddProperty.module.css';
-import MobileMenu from '../pages/MobileMenu';
+import Navigation from '../components/Navigation';
 
 export default function AddPropertyPage() {
   const [user, setUser] = useState(null);
@@ -235,79 +235,9 @@ const handleSubmit = async (e) => {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <nav className={styles.navbar}>
-        <div className={styles.navbarLeft}>
-          <Link href="/" className={styles.logo}>
-            <i className="bx bxs-building-house"></i> SmartEstate
-          </Link>
-          <Link href="/" className={styles.navLink}>
-            Home
-          </Link>
-          <Link href="/ai-chatbot" className={styles.navLink}>
-            AI Chatbot
-          </Link>
-          <Link href="/maps" className={styles.navLink}>
-            Maps
-          </Link>
-          <Link href="/properties" className={styles.navLink}>
-            Properties
-          </Link>
-          <Link href="/favorites" className={styles.navLink}>
-            Favorites
-          </Link>
-        </div>
+      <Navigation />
 
-        <div className={styles.navbarRight}>
-          <div className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
-            <i className="bx bx-menu"></i>
-          </div>
-          
-          {user ? (
-            <div className={styles.userMenu}>
-              <div className={styles.userProfile} onClick={toggleDropdown}>
-                <span className={styles.welcomeUser}>Welcome, {user.username}</span>
-                <i className={`bx ${showDropdown ? 'bx-chevron-up' : 'bx-chevron-down'}`}></i>
-              </div>
-              {showDropdown && (
-                <div className={styles.dropdownMenu}>
-                  <Link href="/dashboard" className={styles.dropdownItem}>
-                    Dashboard
-                  </Link>
-                  <Link href="/profile" className={styles.dropdownItem}>
-                    Profile
-                  </Link>
-                  <Link href="/my-properties" className={styles.dropdownItem}>
-                    My Properties
-                  </Link>
-                  <Link href="/messages" className={styles.dropdownItem}>
-                    Messages
-                  </Link>
-                  <div className={styles.divider}></div>
-                  <button onClick={handleLogout} className={styles.dropdownItem}>
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-              <Link href="/login" className={styles.loginButton}>
-                Login
-              </Link>
-              <Link href="/register" className={styles.registerButton}>
-                Register
-              </Link>
-            </>
-          )}
-        </div>
-      </nav>
-
-      <MobileMenu 
-        isOpen={showMobileMenu}
-        onClose={() => setShowMobileMenu(false)}
-        user={user}
-        onLogout={handleLogout}
-      />
+      
 
       <main className={styles.main}>
         <div className={styles.pageHeader}>
