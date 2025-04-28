@@ -5,8 +5,8 @@ import styles from '../styles/MobileMenu.module.css';
 const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
   if (!isOpen) return null;
 
-  // Get user ID directly from user object
-  const userId = user?.id;
+  // Log the entire user object for debugging
+  console.log("MobileMenu - Full user object:", user);
 
   return (
     <div className={styles.mobileMenuOverlay}>
@@ -47,20 +47,29 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
               <Link href="/dashboard" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-dashboard"></i> Dashboard
               </Link>
+              
+              {/* Directly use the user ID without any conditional logic */}
               <Link 
-                href={userId ? `/profile/${userId}` : '/profile'} 
+                href={`/profile/${user.id}`} 
                 className={styles.userMenuItem} 
                 onClick={onClose}
               >
                 <i className="bx bxs-user"></i> Profile
               </Link>
+              
               <Link href="/my-properties" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-building"></i> My Properties
               </Link>
               <Link href="/messages" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-message"></i> Messages
               </Link>
-              <button className={styles.logoutButton} onClick={() => { onLogout(); onClose(); }}>
+              <button 
+                className={styles.logoutButton} 
+                onClick={() => { 
+                  onLogout(); 
+                  onClose(); 
+                }}
+              >
                 <i className="bx bx-log-out"></i> Logout
               </button>
             </div>

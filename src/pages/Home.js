@@ -64,7 +64,14 @@ export default function HomePage() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
+      try {
+        const parsedUser = JSON.parse(loggedInUser);
+        console.log('Parsed user from localStorage:', parsedUser); // Add this for debugging
+        setUser(parsedUser);
+      } catch (error) {
+        console.error('Error parsing user from localStorage:', error);
+        localStorage.removeItem('user'); // Remove invalid user data
+      }
     }
   }, []);
 
@@ -200,12 +207,14 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <MobileMenu 
-        isOpen={showMobileMenu}
-        onClose={() => setShowMobileMenu(false)}
-        user={user}
-        onLogout={handleLogout}
-      />
+      {showMobileMenu && (
+        <MobileMenu 
+          isOpen={showMobileMenu} 
+          onClose={() => setShowMobileMenu(false)} 
+          user={user} // This should be the state variable that contains the user object
+          onLogout={handleLogout} 
+        />
+      )}
 
       <main className={styles.main}>
         <div className={styles.searchContainer}>

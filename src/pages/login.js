@@ -24,31 +24,37 @@ export default function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          username: identifier, // Backend expects 'username' but will check against both username or email
+          username: identifier,
           password, 
           rememberMe 
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
+      // After a successful login response
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Log the full response for debugging
+        console.log('Login response:', data);
+        console.log('User ID from server:', data.user.id);
+        
+        // Store user data in localStorage - ensure ID is explicitly added
+        const userToStore = {
+          id: data.user.id,
+          username: data.user.username,
+          email: data.user.email,
+          user_type: data.user.user_type
+        };
+        
+        console.log('Storing user in localStorage:', userToStore);
+        localStorage.setItem('user', JSON.stringify(userToStore));
+        
+        // Redirect to home or previous page
+        router.push('/');
+      } else {
+        const data = await response.json();
         throw new Error(data.message || 'Login failed');
       }
-
-      // Store user info in localStorage
-      const { profile_picture, ...userWithoutPicture } = data.user;
-
-      // Ensure we have the user ID explicitly included
-      const userToStore = {
-        id: data.user.id, // Make sure ID is explicitly included
-        ...userWithoutPicture
-      };
-
-      localStorage.setItem('user', JSON.stringify(userToStore));
-      
-      // Redirect to home page
-      router.push('/Home');
     } catch (err) {
       setError(err.message);
     } finally {
