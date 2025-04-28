@@ -1,12 +1,28 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from '../styles/MobileMenu.module.css';
 
 const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
+  const router = useRouter();
+  
   if (!isOpen) return null;
-
-  // Log the entire user object for debugging
-  console.log("MobileMenu - Full user object:", user);
+  
+  // Log the user object for debugging
+  console.log("MobileMenu - User object:", user);
+  
+  // Function to handle profile navigation - similar to handleContactRealtor
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    if (user && user.id) {
+      // Close the menu first
+      onClose();
+      // Then navigate to the profile page
+      router.push(`/profile/${user.id}`);
+    } else {
+      console.error("User ID is missing");
+    }
+  };
 
   return (
     <div className={styles.mobileMenuOverlay}>
@@ -48,14 +64,13 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
                 <i className="bx bxs-dashboard"></i> Dashboard
               </Link>
               
-              {/* Directly use the user ID without any conditional logic */}
-              <Link 
-                href={`/profile/${user.id}`} 
+              {/* Use the same approach as handleContactRealtor */}
+              <button 
                 className={styles.userMenuItem} 
-                onClick={onClose}
+                onClick={handleProfileClick}
               >
                 <i className="bx bxs-user"></i> Profile
-              </Link>
+              </button>
               
               <Link href="/my-properties" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-building"></i> My Properties

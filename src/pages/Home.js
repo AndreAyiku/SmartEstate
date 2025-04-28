@@ -178,9 +178,9 @@ export default function HomePage() {
                   <Link href="/dashboard" className={styles.dropdownItem}>
                     Dashboard
                   </Link>
-                  <Link href="/profile" className={styles.dropdownItem}>
-                    Profile
-                  </Link>
+                  <Link href={user && user.id ? `/profile/${user.id}` : '/login'} className={styles.dropdownItem}>
+  Profile
+</Link>
                   <Link href="/my-properties" className={styles.dropdownItem}>
                     My Properties
                   </Link>
