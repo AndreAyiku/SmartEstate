@@ -97,6 +97,9 @@ const Navigation = () => {
                   </Link>
                   <Link href="/messages" className={styles.dropdownItem}>
                     Messages
+                    {user && user.unreadMessageCount > 0 && (
+                      <span className={styles.notificationBadge}>{user.unreadMessageCount}</span>
+                    )}
                   </Link>
                   <div className={styles.divider}></div>
                   <button onClick={handleLogout} className={styles.dropdownItem}>
