@@ -22,6 +22,7 @@ export default async function handler(req, res) {
         u.id as realtor_id,
         u.username as realtor_name,
         u.email as realtor_email,
+        u.phone_number as realtor_phone,
         u.profile_picture as realtor_profile_picture
       FROM property p
       LEFT JOIN "user" u ON p.realtor_id = u.id
@@ -86,7 +87,7 @@ export default async function handler(req, res) {
         id: property.realtor_id,
         name: property.realtor_name,
         email: property.realtor_email,
-        phone: "555-123-4567", // You might want to add this to your user table
+        phone: property.realtor_phone || "Not provided", // Use the phone number from database or fallback
         profile_picture: property.realtor_profile_picture 
           ? `data:image/jpeg;base64,${Buffer.from(property.realtor_profile_picture).toString('base64')}` 
           : null

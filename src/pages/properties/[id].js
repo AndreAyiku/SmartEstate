@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/PropertyDetails.module.css';
-import homeStyles from '../../styles/Home.module.css';
 import Navigation from '@/components/Navigation';
 
 export default function PropertyDetailsPage() {
@@ -277,7 +276,9 @@ export default function PropertyDetailsPage() {
                   <div className={styles.agentDetails}>
                     <h4>{property.realtor.name}</h4>
                     <p><i className="bx bx-envelope"></i> {property.realtor.email}</p>
-                    <p><i className="bx bx-phone"></i> {property.realtor.phone}</p>
+                    {property.realtor.phone && (
+                      <p><i className="bx bx-phone"></i> {property.realtor.phone}</p>
+                    )}
                   </div>
                 </div>
                 <div className={styles.agentActions}>
