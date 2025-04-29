@@ -9,6 +9,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(''); // Added phone number state
   const [userType, setUserType] = useState('User');
   const [profileImage, setProfileImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
@@ -48,6 +49,7 @@ export default function Register() {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('userType', userType);
+      formData.append('phoneNumber', phoneNumber); // Added phone number to form data
       
       if (profileImage) {
         formData.append('profilePicture', profileImage);
@@ -70,6 +72,15 @@ export default function Register() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Phone number validation function
+  const validatePhoneInput = (value) => {
+    // Allow only numbers, spaces, hyphens, brackets, and plus sign
+    const regex = /^[0-9\s\-\(\)\+]*$/;
+    if (regex.test(value) || value === '') {
+      setPhoneNumber(value);
     }
   };
 
@@ -122,6 +133,19 @@ export default function Register() {
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            
+            {/* Phone number field */}
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              className={styles.inputField}
+              placeholder="Enter your phone number"
+              value={phoneNumber}
+              onChange={(e) => validatePhoneInput(e.target.value)}
               required
             />
             

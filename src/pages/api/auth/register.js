@@ -42,22 +42,25 @@ export default async function handler(req, res) {
     const password = fields.password ? fields.password[0] : undefined;
     const email = fields.email ? fields.email[0] : undefined;
     const userType = fields.userType ? fields.userType[0] : undefined;
+    const phoneNumber = fields.phoneNumber ? fields.phoneNumber[0] : undefined; // Extract phone number
 
-    if (!username || !password || !email || !userType) {
+    if (!username || !password || !email || !userType || !phoneNumber) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check if username or email already exists
+    // Check if username, email, or phone number already exists
     const existingUser = await pool.query(
-      'SELECT * FROM "user" WHERE username = $1 OR email = $2',
-      [username, email]
+      'SELECT * FROM "user" WHERE username = $1 OR email = $2 OR phone_number = $3',
+      [username, email, phoneNumber]
     );
 
     if (existingUser.rows.length > 0) {
       if (existingUser.rows[0].username === username) {
         return res.status(400).json({ message: 'Username already exists' });
-      } else {
+      } else if (existingUser.rows[0].email === email) {
         return res.status(400).json({ message: 'Email already exists' });
+      } else if (existingUser.rows[0].phone_number === phoneNumber) {
+        return res.status(400).json({ message: 'Phone number already exists' });
       }
     }
 
@@ -74,10 +77,10 @@ export default async function handler(req, res) {
       profilePicture = fileData;
     }
 
-    // Create new user
+    // Create new user with phone number
     await pool.query(
-      'INSERT INTO "user" (username, password, email, user_type, profile_picture) VALUES ($1, $2, $3, $4, $5)',
-      [username, hashedPassword, email, userType, profilePicture]
+      'INSERT INTO "user" (username, password, email, user_type, profile_picture, phone_number) VALUES ($1, $2, $3, $4, $5, $6)',
+      [username, hashedPassword, email, userType, profilePicture, phoneNumber]
     );
 
     return res.status(201).json({
