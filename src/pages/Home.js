@@ -39,7 +39,7 @@ export default function HomePage() {
       if (bathrooms) queryParams.append('bathrooms', bathrooms);
       queryParams.append('page', currentPage);
       
-      const response = await fetch(/api/properties?${queryParams.toString()});
+      const response = await fetch(`/api/properties?${queryParams.toString()}`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch properties');
@@ -92,7 +92,7 @@ export default function HomePage() {
   };
 
   const handleClickOutside = (e) => {
-    if (showDropdown && !e.target.closest(.${styles.userMenu})) {
+    if (showDropdown && !e.target.closest(`.${styles.userMenu}`)) {
       setShowDropdown(false);
     }
   };
@@ -113,23 +113,6 @@ export default function HomePage() {
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo(0, 0); // Scroll to top when changing pages
-  };
-
-  // Handle adding to favorites
-  const handleAddToFavorite = async (propertyId) => {
-    // Check if user is logged in
-    if (!user) {
-      router.push('/login?redirect=properties');
-      return;
-    }
-    
-    try {
-      // Logic for adding to favorites would go here
-      // This would typically involve an API call to your backend
-      alert(`Property ${propertyId} added to favorites!`);
-    } catch (error) {
-      console.error('Error adding to favorites:', error);
-    }
   };
 
   return (
@@ -220,7 +203,7 @@ export default function HomePage() {
           {loading ? (
             // Loading state
             Array(6).fill(0).map((_, index) => (
-              <div key={skeleton-${index}} className={${styles.propertyCard} ${styles.skeleton}}>
+              <div key={`skeleton-${index}`} className={`${styles.propertyCard} ${styles.skeleton}`}>
                 <div className={styles.propertyImageContainer} style={{ backgroundColor: '#eee' }}></div>
                 <div className={styles.propertyInfo}>
                   <div style={{ height: '24px', backgroundColor: '#eee', marginBottom: '10px', borderRadius: '4px' }}></div>
@@ -260,7 +243,7 @@ export default function HomePage() {
                   <div className={styles.propertyType}>{property.type}</div>
                   <FavoriteButton 
                     propertyId={property.id} 
-                    initialFavorited={property.favorited || false}
+                    initialFavorited={false} // This will be updated by the component itself
                   />
                 </div>
                 <div className={styles.propertyInfo}>
@@ -275,7 +258,7 @@ export default function HomePage() {
                   </div>
                   <div className={styles.propertyPriceRow}>
                     <p className={styles.propertyPrice}>{property.price}</p>
-                    <Link href={/properties/${property.id}} className={styles.viewDetailsButton}>
+                    <Link href={`/properties/${property.id}`} className={styles.viewDetailsButton}>
                       View Details
                     </Link>
                   </div>
@@ -314,7 +297,7 @@ export default function HomePage() {
                 return (
                   <button 
                     key={pageNum}
-                    className={${styles.paginationButton} ${currentPage === pageNum ? styles.active : ''}}
+                    className={`${styles.paginationButton} ${currentPage === pageNum ? styles.active : ''}`}
                     onClick={() => handlePageChange(pageNum)}
                   >
                     {pageNum}
