@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import styles from '../styles/HomePage.module.css';
 import MobileMenu from '../pages/MobileMenu';
 import Navigation from '@/components/Navigation';
+import FavoriteButton from '@/components/FavoriteButton';
 
 export default function HomePage() {
   const [user, setUser] = useState(null);
@@ -114,22 +115,35 @@ export default function HomePage() {
     window.scrollTo(0, 0); // Scroll to top when changing pages
   };
 
-  // Handle adding to favorites
-  const handleAddToFavorite = async (propertyId) => {
-    // Check if user is logged in
-    if (!user) {
-      router.push('/login?redirect=properties');
-      return;
-    }
+  // Check favorite status for displayed properties
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      if (!user || !properties.length) return;
+      
+      try {
+        const propertyIds = properties.map(property => property.id).join(',');
+        const response = await fetch(`/api/favorites/check?userId=${user.id}&propertyIds=${propertyIds}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to check favorite status');
+        }
+        
+        const { favoriteStatus } = await response.json();
+        
+        // Update properties with favorite status
+        setProperties(currentProperties => 
+          currentProperties.map(property => ({
+            ...property,
+            favorited: favoriteStatus[property.id] || false
+          }))
+        );
+      } catch (error) {
+        console.error('Error checking favorite status:', error);
+      }
+    };
     
-    try {
-      // Logic for adding to favorites would go here
-      // This would typically involve an API call to your backend
-      alert(`Property ${propertyId} added to favorites!`);
-    } catch (error) {
-      console.error('Error adding to favorites:', error);
-    }
-  };
+    checkFavoriteStatus();
+  }, [user, properties.length]);
 
   return (
     <div className={styles.container}>
@@ -257,12 +271,10 @@ export default function HomePage() {
                 <div className={styles.propertyImageContainer}>
                   <img src={property.image} alt={property.title} className={styles.propertyImage} />
                   <div className={styles.propertyType}>{property.type}</div>
-                  <button 
-                    className={styles.favoriteButton}
-                    onClick={() => handleAddToFavorite(property.id)}
-                  >
-                    <i className="bx bx-heart"></i>
-                  </button>
+                  <FavoriteButton 
+                    propertyId={property.id} 
+                    initialFavorited={property.favorited || false}
+                  />
                 </div>
                 <div className={styles.propertyInfo}>
                   <h3 className={styles.propertyTitle}>{property.title}</h3>

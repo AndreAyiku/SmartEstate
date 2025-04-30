@@ -597,6 +597,14 @@
 .propertyImagePlaceholder i {
   font-size: 3rem;
 }
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
   
 .mobileMenuButton {
     display: none;
