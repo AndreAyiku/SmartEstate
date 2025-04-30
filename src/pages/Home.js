@@ -39,7 +39,7 @@ export default function HomePage() {
       if (bathrooms) queryParams.append('bathrooms', bathrooms);
       queryParams.append('page', currentPage);
       
-      const response = await fetch(`/api/properties?${queryParams.toString()}`);
+      const response = await fetch(/api/properties?${queryParams.toString()});
       
       if (!response.ok) {
         throw new Error('Failed to fetch properties');
@@ -92,7 +92,7 @@ export default function HomePage() {
   };
 
   const handleClickOutside = (e) => {
-    if (showDropdown && !e.target.closest(`.${styles.userMenu}`)) {
+    if (showDropdown && !e.target.closest(.${styles.userMenu})) {
       setShowDropdown(false);
     }
   };
@@ -115,35 +115,22 @@ export default function HomePage() {
     window.scrollTo(0, 0); // Scroll to top when changing pages
   };
 
-  // Check favorite status for displayed properties
-  useEffect(() => {
-    const checkFavoriteStatus = async () => {
-      if (!user || !properties.length) return;
-      
-      try {
-        const propertyIds = properties.map(property => property.id).join(',');
-        const response = await fetch(`/api/favorites/check?userId=${user.id}&propertyIds=${propertyIds}`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to check favorite status');
-        }
-        
-        const { favoriteStatus } = await response.json();
-        
-        // Update properties with favorite status
-        setProperties(currentProperties => 
-          currentProperties.map(property => ({
-            ...property,
-            favorited: favoriteStatus[property.id] || false
-          }))
-        );
-      } catch (error) {
-        console.error('Error checking favorite status:', error);
-      }
-    };
+  // Handle adding to favorites
+  const handleAddToFavorite = async (propertyId) => {
+    // Check if user is logged in
+    if (!user) {
+      router.push('/login?redirect=properties');
+      return;
+    }
     
-    checkFavoriteStatus();
-  }, [user, properties.length]);
+    try {
+      // Logic for adding to favorites would go here
+      // This would typically involve an API call to your backend
+      alert(`Property ${propertyId} added to favorites!`);
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -233,7 +220,7 @@ export default function HomePage() {
           {loading ? (
             // Loading state
             Array(6).fill(0).map((_, index) => (
-              <div key={`skeleton-${index}`} className={`${styles.propertyCard} ${styles.skeleton}`}>
+              <div key={skeleton-${index}} className={${styles.propertyCard} ${styles.skeleton}}>
                 <div className={styles.propertyImageContainer} style={{ backgroundColor: '#eee' }}></div>
                 <div className={styles.propertyInfo}>
                   <div style={{ height: '24px', backgroundColor: '#eee', marginBottom: '10px', borderRadius: '4px' }}></div>
@@ -288,7 +275,7 @@ export default function HomePage() {
                   </div>
                   <div className={styles.propertyPriceRow}>
                     <p className={styles.propertyPrice}>{property.price}</p>
-                    <Link href={`/properties/${property.id}`} className={styles.viewDetailsButton}>
+                    <Link href={/properties/${property.id}} className={styles.viewDetailsButton}>
                       View Details
                     </Link>
                   </div>
@@ -327,7 +314,7 @@ export default function HomePage() {
                 return (
                   <button 
                     key={pageNum}
-                    className={`${styles.paginationButton} ${currentPage === pageNum ? styles.active : ''}`}
+                    className={${styles.paginationButton} ${currentPage === pageNum ? styles.active : ''}}
                     onClick={() => handlePageChange(pageNum)}
                   >
                     {pageNum}
