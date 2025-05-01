@@ -86,9 +86,12 @@ const Navigation = () => {
               </div>
               {showDropdown && (
                 <div className={styles.dropdownMenu}>
-                  <Link href="/dashboard" className={styles.dropdownItem}>
-                    Dashboard
-                  </Link>
+                  {user && user.user_type === 'Admin' && (
+                    <Link href="/admin/dashboard" className={styles.dropdownItem}>
+                      <i className="bx bxs-dashboard"></i> Admin Dashboard
+                    </Link>
+                  )}
+                  
                   <Link href={user && user.id ? `/profile/${user.id}` : '/login'} className={styles.dropdownItem}>
                     Profile
                   </Link>

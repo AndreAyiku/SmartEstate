@@ -54,9 +54,11 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
           {user ? (
             <div className={styles.userSection}>
               <p className={styles.welcomeUser}>Welcome, {user.username}</p>
-              <Link href="/dashboard" className={styles.userMenuItem} onClick={onClose}>
-                <i className="bx bxs-dashboard"></i> Dashboard
-              </Link>
+              {user.user_type === 'Admin' && (
+                <Link href="/admin/dashboard" className={styles.userMenuItem} onClick={onClose}>
+                  <i className="bx bxs-dashboard"></i> Admin Dashboard
+                </Link>
+              )}
               
               <button 
                 className={styles.userMenuItem} 
@@ -70,6 +72,9 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
               </Link>
               <Link href="/messages" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-message"></i> Messages
+                {user.unreadMessageCount > 0 && (
+                  <span className={styles.notificationBadge}>{user.unreadMessageCount}</span>
+                )}
               </Link>
               <button 
                 className={styles.logoutButton} 
