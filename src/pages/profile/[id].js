@@ -215,23 +215,23 @@ export default function ProfilePage() {
                   <i className="bx bx-message-square-detail"></i> Message {isRealtor ? 'Realtor' : 'User'}
                 </button>
               ) : (
-                <>
-                  {isRealtor ? (
+                <div className={styles.profileButtons}>
+                  <button 
+                    className={styles.primaryButton}
+                    onClick={() => router.push('/account/edit')}
+                  >
+                    <i className="bx bx-edit"></i> Edit Profile
+                  </button>
+                  
+                  {isRealtor && (
                     <button 
-                      className={styles.primaryButton}
+                      className={styles.secondaryButton}
                       onClick={handleAddProperty}
                     >
-                      <i className="bx bx-plus-circle"></i> Add New Property
-                    </button>
-                  ) : (
-                    <button 
-                      className={styles.primaryButton}
-                      onClick={() => router.push('/account/edit')}
-                    >
-                      <i className="bx bx-edit"></i> Edit Profile
+                      <i className="bx bx-plus-circle"></i> Add Property
                     </button>
                   )}
-                </>
+                </div>
               )}
             </div>
           </div>

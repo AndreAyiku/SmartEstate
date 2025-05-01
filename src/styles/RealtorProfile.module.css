@@ -68,6 +68,22 @@
   position: relative;
   z-index: 1;
 }
+.profileButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .profileButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .profileButtons button {
+    width: 100%;
+  }
+}
 
 .breadcrumb {
   display: flex;
