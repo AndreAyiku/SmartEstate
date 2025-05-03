@@ -70,6 +70,11 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
               <Link href="/my-properties" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-building"></i> My Properties
               </Link>
+              {user && (user.user_type === 'Realtor' || user.user_type === 'Admin') && (
+                <Link href="/my-properties" onClick={onClose} className={styles.mobileMenuItem}>
+                  <i className="bx bx-building-house"></i> My Properties
+                </Link>
+              )}
               <Link href="/messages" className={styles.userMenuItem} onClick={onClose}>
                 <i className="bx bxs-message"></i> Messages
                 {user.unreadMessageCount > 0 && (

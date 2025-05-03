@@ -98,9 +98,14 @@ const Navigation = () => {
                   <Link href={user && user.id ? `/profile/${user.id}` : '/login'} className={styles.dropdownItem}>
                     Profile
                   </Link>
-                  <Link href="/my-properties" className={styles.dropdownItem}>
-                    My Properties
-                  </Link>
+                  
+                  {/* Only show My Properties for Realtors and Admins */}
+                  {user && (user.user_type === 'Realtor' || user.user_type === 'Admin') && (
+                    <Link href="/my-properties" className={styles.dropdownItem}>
+                      My Properties
+                    </Link>
+                  )}
+                  
                   <Link href="/messages" className={styles.dropdownItem}>
                     Messages
                     {user && user.unreadMessageCount > 0 && (
