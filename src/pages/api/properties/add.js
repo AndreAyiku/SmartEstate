@@ -35,6 +35,10 @@ export default async function handler(req, res) {
       });
     });
     
+    // Extract latitude and longitude from fields
+    const latitude = fields.latitude ? parseFloat(fields.latitude[0]) : null;
+    const longitude = fields.longitude ? parseFloat(fields.longitude[0]) : null;
+    
     // Start a database transaction
     client = await pool.connect();
     
@@ -45,33 +49,39 @@ export default async function handler(req, res) {
       const features = JSON.parse(fields.features);
       
       // Insert property data into the database
-      // Insert property data into the database
-const propertyResult = await client.query(
-    `INSERT INTO "property" (
-      title, description, price, price_type, location, address, city, state, 
-      zip_code, bedrooms, bathrooms, area, property_type, year_built, 
-      realtor_id, status
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
-    RETURNING id`,
-    [
-      fields.title.toString(),
-      fields.description.toString(),
-      parseFloat(fields.price),
-      fields.price_type.toString(), // Ensure this is a plain string
-      fields.location.toString(),
-      fields.address.toString(),
-      fields.city.toString(),
-      fields.state ? fields.state.toString() : null,
-      fields.zip_code ? fields.zip_code.toString() : null,
-      parseInt(fields.bedrooms, 10),
-      parseFloat(fields.bathrooms),
-      parseFloat(fields.area),
-      fields.property_type.toString(), // Ensure this is a plain string
-      fields.year_built ? parseInt(fields.year_built, 10) : null,
-      parseInt(fields.realtor_id, 10),
-      fields.status.toString() // Ensure this is a plain string
-    ]
-  );
+      const insertPropertyQuery = `
+        INSERT INTO property (
+          title, description, price, price_type, location, 
+          address, city, state, zip_code, bedrooms, 
+          bathrooms, area, property_type, year_built, 
+          realtor_id, status, latitude, longitude
+        ) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+        RETURNING id
+      `;
+
+      const propertyValues = [
+        fields.title.toString(),
+        fields.description.toString(),
+        parseFloat(fields.price),
+        fields.price_type.toString(),
+        fields.location.toString(),
+        fields.address.toString(),
+        fields.city.toString(),
+        fields.state ? fields.state.toString() : null,
+        fields.zip_code ? fields.zip_code.toString() : null,
+        parseInt(fields.bedrooms, 10),
+        parseFloat(fields.bathrooms),
+        parseFloat(fields.area),
+        fields.property_type.toString(),
+        fields.year_built ? parseInt(fields.year_built, 10) : null,
+        parseInt(fields.realtor_id, 10),
+        fields.status.toString(),
+        latitude,
+        longitude
+      ];
+
+      const propertyResult = await client.query(insertPropertyQuery, propertyValues);
       
       const propertyId = propertyResult.rows[0].id;
       

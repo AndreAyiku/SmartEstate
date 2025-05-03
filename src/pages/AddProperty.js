@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '@/styles/AddProperty.module.css';
 import Navigation from '../components/Navigation';
+import LocationPicker from '../components/LocationPicker';
 
 export default function AddPropertyPage() {
   const [user, setUser] = useState(null);
@@ -32,6 +33,10 @@ export default function AddPropertyPage() {
     year_built: '',
     status: 'Available',
     features: [{ feature_name: '', feature_value: '' }]
+  });
+  const [coordinates, setCoordinates] = useState({
+    lat: null,
+    lng: null
   });
   
   const router = useRouter();
@@ -161,13 +166,22 @@ export default function AddPropertyPage() {
     setAdditionalImagePreviews(updatedPreviews);
   };
 
-// Form submission handler
-const handleSubmit = async (e) => {
+  // Handle location selection
+  const handleLocationSelected = (location) => {
+    setCoordinates(location);
+  };
+
+  // Form submission handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validate form
     if (!mainImage) {
       setMessage({ type: 'error', content: 'Please upload a main image for the property' });
+      return;
+    }
+    if (!coordinates.lat || !coordinates.lng) {
+      setMessage({ type: 'error', content: 'Please select the property location on the map' });
       return;
     }
     
@@ -196,6 +210,10 @@ const handleSubmit = async (e) => {
       additionalImages.forEach((image, index) => {
         propertyData.append(`additionalImage_${index}`, image);
       });
+
+      // Add coordinates
+      propertyData.append('latitude', coordinates.lat);
+      propertyData.append('longitude', coordinates.lng);
       
       // Send data to API
       const response = await fetch('/api/properties/add', {
@@ -236,8 +254,6 @@ const handleSubmit = async (e) => {
       </Head>
 
       <Navigation />
-
-      
 
       <main className={styles.main}>
         <div className={styles.pageHeader}>
@@ -428,6 +444,15 @@ const handleSubmit = async (e) => {
           
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Location</h2>
+            
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Map Location*</label>
+              <p className={styles.fieldDescription}>Select the exact location of your property on the map</p>
+              <LocationPicker 
+                initialLocation={coordinates.lat ? coordinates : null}
+                onLocationSelected={handleLocationSelected}
+              />
+            </div>
             
             <div className={styles.formGroup}>
               <label htmlFor="location" className={styles.formLabel}>Location/Neighborhood*</label>

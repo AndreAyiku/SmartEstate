@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/PropertyDetails.module.css';
 import Navigation from '@/components/Navigation';
+import PropertyMap from '../../components/PropertyMap';
 
 export default function PropertyDetailsPage() {
   const router = useRouter();
@@ -50,6 +51,15 @@ export default function PropertyDetailsPage() {
     }
   };
 
+  useEffect(() => {
+    if (property) {
+      console.log("Property coordinates:", {
+        lat: property.latitude,
+        lng: property.longitude
+      });
+    }
+  }, [property]);
+
   const handleContactRealtor = () => {
     if (!user) {
       // Redirect to login if not logged in
@@ -59,17 +69,6 @@ export default function PropertyDetailsPage() {
     
     // Navigate to realtor's profile page
     router.push(`/profile/${property.realtor.id}`);
-  };
-
-  const handleScheduleViewing = () => {
-    if (!user) {
-      // Redirect to login if not logged in
-      router.push(`/login?redirect=properties/${id}`);
-      return;
-    }
-    
-    // Logic to schedule a viewing
-    router.push(`/schedule-viewing/${id}`);
   };
 
   const handleLogout = () => {
@@ -288,23 +287,10 @@ export default function PropertyDetailsPage() {
                   >
                     <i className="bx bx-user"></i> View Realtor Profile
                   </button>
-                  <button 
-                    className={styles.secondaryButton}
-                    onClick={handleScheduleViewing}
-                  >
-                    <i className="bx bx-calendar"></i> Schedule Viewing
-                  </button>
                 </div>
               </div>
 
-              <div className={styles.mapCard}>
-                <h3>Location</h3>
-                <div className={styles.mapPlaceholder}>
-                  <i className="bx bx-map-alt"></i>
-                  <p>Map View</p>
-                  <small>{property.address}, {property.city}, {property.state}</small>
-                </div>
-              </div>
+              <PropertyMap property={property} />
             </div>
           </div>
         </div>

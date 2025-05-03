@@ -71,6 +71,9 @@ const Navigation = () => {
           <Link href="/favorites" className={styles.navLink}>
             Favorites
           </Link>
+          <Link href="/map" className={styles.navLink}>
+            <i className="bx bx-map"></i> Map View
+          </Link>
         </div>
 
         <div className={styles.navbarRight}>

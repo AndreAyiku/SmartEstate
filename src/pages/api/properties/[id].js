@@ -83,6 +83,8 @@ export default async function handler(req, res) {
       status: property.status,
       created_at: property.created_at,
       updated_at: property.updated_at,
+      latitude: parseFloat(property.latitude),
+      longitude: parseFloat(property.longitude),
       realtor: {
         id: property.realtor_id,
         name: property.realtor_name,

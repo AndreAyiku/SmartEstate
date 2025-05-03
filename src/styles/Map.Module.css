@@ -1,0 +1,553 @@
+/* Main containers */
+.mapContainer {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .propertyMapContainer {
+    margin-top: 20px;
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .propertyMapContainer h3 {
+    padding: 15px;
+    margin: 0;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .propertyMapCanvas {
+    height: 300px;
+    width: 100%;
+  }
+  
+  .mapPageMain {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Map header */
+  .mapHeader {
+    margin-bottom: 20px;
+  }
+  
+  .mapHeader h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .mapHeader p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Property map elements */
+  .propertyMapHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .propertyMapHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .expandButton {
+    background: none;
+    border: none;
+    color: #4a6fa1;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .expandButton:hover {
+    background-color: rgba(74, 111, 161, 0.1);
+  }
+  
+  .addressDetails {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+  }
+  
+  .addressDetails i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #4a6fa1;
+  }
+  
+  /* Full screen map */
+  .fullMapOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fullMapContainer {
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .closeMapButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+  
+  /* Location picker */
+  .locationPickerContainer {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .searchBarContainer {
+    margin-bottom: 15px;
+  }
+  
+  .searchInputWrapper {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .searchInputWrapper i {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    color: #777;
+    background-color: #f9f9f9;
+  }
+  
+  .searchInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  .searchButton {
+    padding: 0 20px;
+    background-color: #4a6fa1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .searchButton:hover {
+    background-color: #3b5a80;
+  }
+  
+  .searchButton:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  .mapInstructions {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f0f7ff;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  
+  .mapInstructions i {
+    color: #4a6fa1;
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  .selectedLocationInfo {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+  
+  .locationCoordinates {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .locationCoordinates p {
+    margin: 0;
+    margin-right: 20px;
+  }
+  
+  /* Map page filters */
+  .mapFilters {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .filterRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .filterSelect {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 180px;
+  }
+  
+  .filterButtons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  .applyFilterButton, .clearFilterButton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .applyFilterButton {
+    background-color: #4a6fa1;
+    color: white;
+  }
+  
+  .applyFilterButton:hover {
+    background-color: #3b5a80;
+  }
+  
+  .clearFilterButton {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+  }
+  
+  .clearFilterButton:hover {
+    background-color: #eaeaea;
+  }
+  
+  /* Map content layout */
+  .mapContent {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .mapContainer {
+    flex: 1;
+    height: 600px;
+  }
+  
+  /* Property preview */
+  .propertyPreview {
+    width: 350px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .propertyPreviewHeader {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .propertyPreviewHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .propertyCardMap {
+    padding: 15px;
+  }
+  
+  .propertyImageContainer {
+    position: relative;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background-color: #f2f2f2;
+  }
+  
+  .propertyImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .noImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+  }
+  
+  .noImage i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .propertyType {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(74, 111, 161, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
+  .propertyInfo {
+    padding: 5px;
+  }
+  
+  .propertyTitle {
+    font-size: 1.1rem;
+    margin: 0 0 8px 0;
+  }
+  
+  .propertyLocation {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .propertyLocation i {
+    margin-right: 5px;
+  }
+  
+  .propertyFeatures {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .propertyFeatures span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .propertyFeatures i {
+    margin-right: 5px;
+  }
+  
+  .propertyPriceRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .propertyPrice {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #4a6fa1;
+    margin: 0;
+  }
+  
+  .viewDetailsButton {
+    padding: 8px 15px;
+    background-color: #4a6fa1;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .propertyDistance {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+  }
+  
+  .propertyDistance i {
+    margin-right: 5px;
+  }
+  
+  /* Map info window */
+  .mapInfoWindow {
+    padding: 10px;
+    max-width: 200px;
+  }
+  
+  .mapInfoWindow h4 {
+    margin: 0 0 5px;
+    font-size: 14px;
+  }
+  
+  .mapInfoWindow p {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+  
+  .mapInfoWindow .propertyPrice {
+    font-weight: 600;
+    color: #4a6fa1;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  /* Loading and error states */
+  .mapLoading, .mapError {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .mapError i, .mapLoading i {
+    font-size: 2.5rem;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .spinner {
+    margin-bottom: 15px;
+    display: block;
+  }
+  
+  .retryButton {
+    padding: 8px 15px;
+    background-color: #4a6fa1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .retryButton i {
+    font-size: 1rem;
+    margin-right: 5px;
+    color: white;
+  }
+  
+  /* Error message */
+  .errorMessage {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #fff5f5;
+    border: 1px solid #ffd6d6;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    color: #e53e3e;
+  }
+  
+  .errorMessage i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .mapContent {
+      flex-direction: column;
+    }
+    
+    .propertyPreview {
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .filterRow {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .filterSelect {
+      width: 100%;
+      min-width: auto;
+    }
+    
+    .filterButtons {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
