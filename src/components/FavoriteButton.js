@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../../styles/Map.module.css';
+import styles from '../styles/FavoriteButton.module.css';
 
 const FavoriteButton = ({ propertyId, initialFavorited = false, onToggle = null }) => {
   const [favorited, setFavorited] = useState(initialFavorited);
