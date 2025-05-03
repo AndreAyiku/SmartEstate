@@ -72,7 +72,7 @@ export default function ForgotPassword() {
           )}
 
           <p className={styles.instructions}>
-            Enter the email address associated with your account, and we'll send you a link to reset your password.
+            Enter the email address associated with your account, and we will send you a link to reset your password.
           </p>
 
           <form onSubmit={handleSubmit}>
