@@ -170,7 +170,7 @@ export default function FavoritesPage() {
               <i className="bx bx-heart"></i>
               <h3>No favorites yet</h3>
               <p>Properties you favorite will appear here</p>
-              <Link href="/properties" className={styles.searchButton} style={{ marginTop: '15px', display: 'inline-block' }}>
+              <Link href="/home" className={styles.searchButton} style={{ marginTop: '15px', display: 'inline-block' }}>
                 Browse Properties
               </Link>
             </div>
