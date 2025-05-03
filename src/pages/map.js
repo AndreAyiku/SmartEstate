@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import MapComponent from '../components/MapComponent';
 import Navigation from '../components/Navigation';
-import styles from '../styles/Map.Module.css';
+import styles from '../styles/Map.module.css';
 
 export default function MapPage() {
   const [properties, setProperties] = useState([]);
