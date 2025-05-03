@@ -27,7 +27,7 @@ export default function ForgotPassword() {
       if (response.ok) {
         setMessage({ 
           type: 'success', 
-          content: "If your email is registered with us, you will receive a password reset link shortly. Please remeber to check Junk if you do not see the email in your inbox."
+          content: 'If your email is registered with us, you will receive a password reset link shortly. Please remeber to check Junk if you don&apos;t see the email in your inbox.'
         });
         setEmail('');
       } else {
