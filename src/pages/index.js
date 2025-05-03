@@ -49,12 +49,10 @@ export default function Home() {
           <h1>Welcome to Smart Real Estate</h1>
           <p>Find, rent, and buy properties effortlessly.</p>
           <div className={styles.ctaButtons}>
-            <Link href="/properties" className={styles.ctaButton}>
+            <Link href="/login" className={styles.ctaButton}>
               Get Started
             </Link>
-            <Link href="/ai-chatbot" className={styles.ctaSecondary}>
-              Get Personalized Recommendations
-            </Link>
+            
           </div>
         </div>
       </main>
@@ -62,7 +60,6 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerTop}>
           <div className={styles.socialIcons}>
-            <a href="#"><i className="bx bxl-facebook"></i></a>
             <a href="#"><i className="bx bxl-twitter"></i></a>
             <a href="#"><i className="bx bxl-instagram"></i></a>
             <a href="#"><i className="bx bxl-linkedin"></i></a>

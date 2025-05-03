@@ -38,12 +38,7 @@ const MobileMenu = ({ isOpen, onClose, user, onLogout }) => {
             <Link href="/" className={styles.mobileNavLink} onClick={onClose}>
               Home
             </Link>
-            <Link href="/maps" className={styles.mobileNavLink} onClick={onClose}>
-              Maps
-            </Link>
-            <Link href="/properties" className={styles.mobileNavLink} onClick={onClose}>
-              Properties
-            </Link>
+            
             <Link href="/favorites" className={styles.mobileNavLink} onClick={onClose}>
               Favorites
             </Link>

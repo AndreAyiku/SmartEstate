@@ -62,12 +62,7 @@ const Navigation = () => {
           <Link href="/Home" className={styles.navLink}>
             Home
           </Link>
-          <Link href="/maps" className={styles.navLink}>
-            Maps
-          </Link>
-          <Link href="/properties" className={styles.navLink}>
-            Properties
-          </Link>
+          
           <Link href="/favorites" className={styles.navLink}>
             Favorites
           </Link>
