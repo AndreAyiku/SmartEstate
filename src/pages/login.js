@@ -123,19 +123,12 @@ export default function Login() {
                 required
                 minLength="6"
               />
-              <p className={styles.helperText}>Must be at least 6 characters</p>
+              <Link href="/forgot-password" className={styles.forgotPasswordLink}>
+                Forgot Password?
+              </Link>
             </div>
             
-            <div className={styles.rememberMe}>
-              <input 
-                type="checkbox" 
-                id="remember" 
-                name="remember"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)} 
-              /> 
-              <label htmlFor="remember">Remember me</label>
-            </div>
+          
             
             <button
               type="submit"
@@ -145,7 +138,6 @@ export default function Login() {
               {loading ? 'Logging in...' : 'Login'}
             </button>
             
-            <a href="#" className={styles.forgotPassword}>Forgot Password?</a>
             
             <p className={styles.formFooter}>
               Don&apos;t have an account?{' '}
@@ -155,9 +147,7 @@ export default function Login() {
             </p>
           </form>
           
-          <p className={styles.terms}>
-            By logging in, you agree to our <a href="#" className={styles.formLink}>Terms of Service</a> & <a href="#" className={styles.formLink}>Privacy Policy</a>.
-          </p>
+        
         </div>
       </div>
     </div>
