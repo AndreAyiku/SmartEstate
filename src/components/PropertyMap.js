@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from '../styles/map.module.css';
+import styles from '../styles/Map.Module.css';
 
 const PropertyMap = ({ property }) => {
   const mapRef = useRef(null);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import MapComponent from './MapComponent';
-import styles from '../styles/map.module.css';
+import styles from '../styles/Map.Module.css';
 
 const LocationPicker = ({ 
   initialLocation = null, 
