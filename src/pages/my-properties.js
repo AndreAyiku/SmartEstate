@@ -123,7 +123,7 @@ export default function MyPropertiesPage() {
           <div className={styles.emptyState}>
             <i className="bx bx-building-house"></i>
             <h2>No Properties Found</h2>
-            <p>You haven't listed any properties yet.</p>
+            <p>You have not listed any properties yet.</p>
             <Link href="/AddProperty" className={styles.addPropertyButton}>
               <i className="bx bx-plus"></i> Add Your First Property
             </Link>
