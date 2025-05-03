@@ -27,11 +27,11 @@ export default function ForgotPassword() {
       if (response.ok) {
         setMessage({ 
           type: 'success', 
-          content: 'If your email is registered with us, you will receive a password reset link shortly.'
+          content: "If your email is registered with us, you will receive a password reset link shortly."
         });
         setEmail('');
       } else {
-        throw new Error(data.message || 'Something went wrong');
+        throw new Error(data.message || "Something went wrong");
       }
     } catch (error) {
       setMessage({ type: 'error', content: error.message });
