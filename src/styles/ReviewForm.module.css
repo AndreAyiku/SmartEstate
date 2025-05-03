@@ -1,0 +1,122 @@
+.reviewFormContainer {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.formTitle {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #212529;
+  font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.formTitle:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #ff8c00;
+}
+
+.errorMessage, .successMessage {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.successMessage {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.errorMessage i, .successMessage i {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.ratingLabel, .textAreaLabel {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.reviewTextArea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  font-family: 'Montserrat', sans-serif;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+.reviewTextArea:focus {
+  border-color: #ff8c00;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+}
+
+.submitButton {
+  background-color: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.submitButton:hover {
+  background-color: #e67e00;
+}
+
+.submitButton:disabled {
+  background-color: #ffc107;
+  cursor: not-allowed;
+}
+
+.submitButton i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+  .reviewFormContainer {
+    padding: 1rem;
+  }
+  
+  .submitButton {
+    width: 100%;
+  }
+}

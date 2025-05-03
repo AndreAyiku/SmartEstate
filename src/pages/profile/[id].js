@@ -5,6 +5,8 @@ import Link from 'next/link';
 import styles from '../../styles/RealtorProfile.module.css';
 import homeStyles from '../../styles/Home.module.css';
 import Navigation from '@/components/Navigation';
+import ReviewForm from '../../components/ReviewForm';
+import ReviewList from '../../components/ReviewList';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -18,6 +20,7 @@ export default function ProfilePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [itemType, setItemType] = useState('');
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
   
   useEffect(() => {
     // Check if user is logged in
@@ -238,7 +241,7 @@ export default function ProfilePage() {
           
           <div className={styles.statsCards}>
             {isRealtor ? (
-              // Realtor stats
+              // Realtor stats - removing the sales card
               <>
                 <div className={styles.statCard}>
                   <div className={styles.statIcon}>
@@ -247,15 +250,6 @@ export default function ProfilePage() {
                   <div className={styles.statContent}>
                     <h3>{profileUser.totalProperties}</h3>
                     <p>Properties</p>
-                  </div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statIcon}>
-                    <i className="bx bx-dollar"></i>
-                  </div>
-                  <div className={styles.statContent}>
-                    <h3>{profileUser.totalSales}</h3>
-                    <p>Total Sales</p>
                   </div>
                 </div>
                 <div className={styles.statCard}>
@@ -269,7 +263,7 @@ export default function ProfilePage() {
                 </div>
               </>
             ) : (
-              // Regular user stats
+              // Regular user stats - unchanged
               <>
                 <div className={styles.statCard}>
                   <div className={styles.statIcon}>
@@ -435,6 +429,31 @@ export default function ProfilePage() {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+          
+          {/* Reviews section - enhanced with our new components */}
+          {isRealtor && (
+            <div className={styles.reviewsSection}>
+              <h2>Reviews & Ratings</h2>
+              
+              {/* Only show review form if user is logged in and not viewing their own profile */}
+              {currentUser && !isOwnProfile && (
+                <ReviewForm 
+                  realtorId={id}
+                  onSubmitSuccess={() => {
+                    // Force refresh reviews when a new one is submitted
+                    setRefreshTrigger(prev => prev + 1);
+                  }}
+                />
+              )}
+              
+              {/* Review list with stats and pagination */}
+              <ReviewList 
+                realtorId={id}
+                reviewsPerPage={5}
+                key={refreshTrigger}
+              />
             </div>
           )}
           

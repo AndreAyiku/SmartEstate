@@ -1,0 +1,226 @@
+.reviewListContainer {
+  margin-bottom: 2rem;
+}
+
+.reviewStats {
+  display: flex;
+  margin-bottom: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.averageRating {
+  padding: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.averageRating h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}
+
+.ratingValue {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.ratingValue span:first-child {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #212529;
+  line-height: 1;
+}
+
+.outOf {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-left: 2px;
+}
+
+.totalReviews {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.ratingDistribution {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.ratingBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ratingStars {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  color: #343a40;
+  font-size: 0.9rem;
+}
+
+.ratingStars span {
+  margin-right: 4px;
+}
+
+.ratingStars i {
+  color: #ffc107;
+}
+
+.ratingBarOuter {
+  flex: 1;
+  height: 12px;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0 1rem;
+}
+
+.ratingBarInner {
+  height: 100%;
+  background-color: #ff8c00;
+  border-radius: 6px;
+  transition: width 0.5s;
+}
+
+.ratingCount {
+  width: 30px;
+  text-align: right;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.noReviews {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.noReviews i {
+  font-size: 3rem;
+  color: #adb5bd;
+  margin-bottom: 1rem;
+}
+
+.noReviews p {
+  color: #6c757d;
+  margin: 0;
+}
+
+.loadingContainer, .errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 140, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: #ff8c00;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.errorContainer i {
+  font-size: 2rem;
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.errorContainer p {
+  color: #dc3545;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 0.25rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paginationButton:hover {
+  background-color: #f8f9fa;
+}
+
+.paginationButton.active {
+  background-color: #ff8c00;
+  color: #fff;
+  border-color: #ff8c00;
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .reviewStats {
+    flex-direction: column;
+  }
+  
+  .averageRating {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .ratingDistribution {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .ratingBar {
+    margin-bottom: 0.75rem;
+  }
+  
+  .ratingBarOuter {
+    margin: 0 0.5rem;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+  }
+}

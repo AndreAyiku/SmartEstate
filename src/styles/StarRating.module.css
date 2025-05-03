@@ -1,0 +1,35 @@
+.starRating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star:not(:last-child) {
+  margin-right: 4px;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.star.readOnly {
+  cursor: default;
+}
+
+.star.readOnly:hover {
+  transform: none;
+}
+
+.star i {
+  display: block;
+}

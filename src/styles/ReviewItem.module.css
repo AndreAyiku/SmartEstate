@@ -1,0 +1,124 @@
+.reviewCard {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.reviewCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.errorMessage {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.errorMessage i {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+
+.reviewerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.reviewerAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f3f5;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewerAvatar i {
+  font-size: 2rem;
+  color: #adb5bd;
+}
+
+.reviewerName {
+  margin: 0;
+  margin-bottom: 0.25rem;
+  color: #212529;
+  font-size: 1rem;
+}
+
+.reviewMeta {
+  display: flex;
+  align-items: center;
+}
+
+.reviewDate {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-right: 0.75rem;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton:hover {
+  color: #c82333;
+}
+
+.deleteButton:disabled {
+  color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.reviewText {
+  color: #495057;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .reviewCard {
+    padding: 1rem;
+  }
+  
+  .reviewHeader {
+    flex-direction: column;
+  }
+  
+  .reviewMeta {
+    margin-top: 1rem;
+  }
+}
