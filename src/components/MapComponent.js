@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from '../styles/Map.module.css';
+import styles from '../styles/map.module.css';
 
 const MapComponent = ({ 
   center = { lat: 40.7128, lng: -74.0060 }, // Default to NYC
