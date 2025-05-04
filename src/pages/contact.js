@@ -22,8 +22,6 @@ export default function ContactPage() {
 
     // Simulate form submission
     try {
-      // Here you would typically send the data to your API
-      // For now, we'll just simulate a successful submission
       
       await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
       
@@ -69,7 +67,7 @@ export default function ContactPage() {
         <div className={styles.contactContainer}>
           <div className={styles.contactHeader}>
             <h1>Get In Touch</h1>
-            <p>We're here to answer any questions you might have about our services. Reach out to us and we'll respond as soon as we can.</p>
+            <p>We are here to answer any questions you might have about our services. Reach out to us and we will respond as soon as we can.</p>
           </div>
 
           <div className={styles.contactContent}>
