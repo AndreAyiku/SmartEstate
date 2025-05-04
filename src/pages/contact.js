@@ -212,9 +212,8 @@ export default function ContactPage() {
       <footer className={styles.footer}>
         <div className={styles.footerTop}>
           <div className={styles.socialIcons}>
-            <a href="#"><i className="bx bxl-facebook"></i></a>
             <a href="#"><i className="bx bxl-twitter"></i></a>
-            <a href="#"><i className="bx bxl-instagram"></i></a>
+            <a href="https://www.instagram.com/smartestatee?igsh=MTI1enVvdHNtN3c1NA%3D%3D&utm_source=qr"><i className="bx bxl-instagram"></i></a>
             <a href="#"><i className="bx bxl-linkedin"></i></a>
           </div>
         </div>
