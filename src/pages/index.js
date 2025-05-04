@@ -58,13 +58,13 @@ export default function Home() {
         <div className={styles.footerTop}>
           <div className={styles.socialIcons}>
             <a href="#"><i className="bx bxl-twitter"></i></a>
-            <a href="#"><i className="bx bxl-instagram"></i></a>
+            <a href="https://www.instagram.com/smartestatee?igsh=MTI1enVvdHNtN3c1NA%3D%3D&utm_source=qr"><i className="bx bxl-instagram"></i></a>
             <a href="#"><i className="bx bxl-linkedin"></i></a>
           </div>
         </div>
         <p className={styles.footerText}>
           <span>Need more info?</span> 
-          <a href="contact.html">Contact us</a> or explore <a href="services.html">Our Services</a>.
+          <Link href="/contact">Contact us</Link>
         </p>
       </footer>
     </div>
