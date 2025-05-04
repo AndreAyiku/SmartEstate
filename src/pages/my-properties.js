@@ -59,19 +59,35 @@ export default function MyPropertiesPage() {
     if (!confirm('Are you sure you want to delete this property?')) return;
 
     try {
+      // Get the user data for authorization
+      const userData = localStorage.getItem('user');
+      if (!userData) {
+        alert('You need to be logged in to delete properties');
+        return;
+      }
+
+      const user = JSON.parse(userData);
+      const userToken = Buffer.from(JSON.stringify(user)).toString('base64');
+
+      // Send the delete request with authorization
       const response = await fetch(`/api/properties/${propertyId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${userToken}`
+        }
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete property');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to delete property');
       }
 
       // Remove property from state
       setProperties(properties.filter(property => property.id !== propertyId));
+      alert('Property deleted successfully');
     } catch (err) {
       console.error('Error deleting property:', err);
-      alert('Failed to delete property. Please try again.');
+      alert(err.message || 'Failed to delete property. Please try again.');
     }
   };
 
