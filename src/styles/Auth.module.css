@@ -179,3 +179,54 @@
   object-fit: cover;
   border: 3px solid #e65100;
 }
+
+/* New styles for password requirements */
+.passwordRequirements {
+  margin: 10px 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 12px 15px;
+}
+
+.requirementsTitle {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.passwordRequirements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.passwordRequirements li {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.passwordRequirements li i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.valid {
+  color: #4cd964;
+}
+
+.invalid {
+  color: #ff9500;
+}
+
+.invalidInput {
+  border-color: #ff3b30 !important;
+}
+
+.mismatchError {
+  color: #ff3b30;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}

@@ -9,12 +9,18 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(''); // Added phone number state
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [userType, setUserType] = useState('User');
   const [profileImage, setProfileImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [passwordErrors, setPasswordErrors] = useState({
+    length: true,
+    uppercase: true,
+    number: true,
+    special: true
+  });
   const fileInputRef = useRef(null);
   const router = useRouter();
 
@@ -31,10 +37,32 @@ export default function Register() {
     }
   };
 
+  // Enhanced password validation
+  const validatePassword = (value) => {
+    setPassword(value);
+    
+    // Check password requirements
+    const errors = {
+      length: value.length < 8,
+      uppercase: !/[A-Z]/.test(value),
+      number: !/[0-9]/.test(value),
+      special: !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value)
+    };
+    
+    setPasswordErrors(errors);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    // Check if password meets all requirements
+    if (Object.values(passwordErrors).some(error => error)) {
+      setError('Password does not meet all requirements');
+      setLoading(false);
+      return;
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -49,7 +77,7 @@ export default function Register() {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('userType', userType);
-      formData.append('phoneNumber', phoneNumber); // Added phone number to form data
+      formData.append('phoneNumber', phoneNumber);
       
       if (profileImage) {
         formData.append('profilePicture', profileImage);
@@ -83,6 +111,9 @@ export default function Register() {
       setPhoneNumber(value);
     }
   };
+  
+  // Check if password is valid overall
+  const isPasswordValid = !Object.values(passwordErrors).some(error => error);
 
   return (
     <div className={styles.container}>
@@ -136,7 +167,6 @@ export default function Register() {
               required
             />
             
-            {/* Phone number field */}
             <label htmlFor="phoneNumber">Phone Number</label>
             <input
               type="tel"
@@ -160,6 +190,7 @@ export default function Register() {
             >
               <option value="User">Regular User</option>
               <option value="Realtor">Realtor</option>
+              
             </select>
             
             <label htmlFor="password">Password</label>
@@ -167,26 +198,54 @@ export default function Register() {
               type="password"
               id="password"
               name="password"
-              className={styles.inputField}
-              placeholder="Enter 6 characters or more"
+              className={`${styles.inputField} ${password && !isPasswordValid ? styles.invalidInput : ''}`}
+              placeholder="Enter secure password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => validatePassword(e.target.value)}
               required
-              minLength="6"
+              minLength="8"
             />
+            
+            {/* Password requirements indicator */}
+            {password && (
+              <div className={styles.passwordRequirements}>
+                <p className={styles.requirementsTitle}>Password must contain:</p>
+                <ul>
+                  <li className={passwordErrors.length ? styles.invalid : styles.valid}>
+                    <i className={`bx ${passwordErrors.length ? 'bx-x' : 'bx-check'}`}></i>
+                    At least 8 characters
+                  </li>
+                  <li className={passwordErrors.uppercase ? styles.invalid : styles.valid}>
+                    <i className={`bx ${passwordErrors.uppercase ? 'bx-x' : 'bx-check'}`}></i>
+                    At least one uppercase letter
+                  </li>
+                  <li className={passwordErrors.number ? styles.invalid : styles.valid}>
+                    <i className={`bx ${passwordErrors.number ? 'bx-x' : 'bx-check'}`}></i>
+                    At least one number
+                  </li>
+                  <li className={passwordErrors.special ? styles.invalid : styles.valid}>
+                    <i className={`bx ${passwordErrors.special ? 'bx-x' : 'bx-check'}`}></i>
+                    At least one special character
+                  </li>
+                </ul>
+              </div>
+            )}
             
             <label htmlFor="confirm-password">Confirm Password</label>
             <input
               type="password"
               id="confirm-password"
               name="confirm-password"
-              className={styles.inputField}
+              className={`${styles.inputField} ${confirmPassword && password !== confirmPassword ? styles.invalidInput : ''}`}
               placeholder="Re-enter your password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              minLength="6"
+              minLength="8"
             />
+            {confirmPassword && password !== confirmPassword && (
+              <p className={styles.mismatchError}>Passwords don't match</p>
+            )}
             
             <label htmlFor="profile-picture">Profile Picture</label>
             <div className={styles.profileUpload}>
@@ -212,7 +271,7 @@ export default function Register() {
             <button 
               type="submit" 
               className={styles.btn}
-              disabled={loading}
+              disabled={loading || !isPasswordValid || password !== confirmPassword}
             >
               {loading ? 'Creating Account...' : 'Sign Up'}
             </button>
