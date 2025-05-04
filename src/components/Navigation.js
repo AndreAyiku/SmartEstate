@@ -62,7 +62,9 @@ const Navigation = () => {
           <Link href="/Home" className={styles.navLink}>
             Home
           </Link>
-          
+          <Link href="/properties" className={styles.navLink}>
+            Properties
+          </Link>
           <Link href="/favorites" className={styles.navLink}>
             Favorites
           </Link>
@@ -94,8 +96,8 @@ const Navigation = () => {
                     Profile
                   </Link>
                   
-                  {/* Only show My Properties for Realtors and Admins */}
-                  {user && (user.user_type === 'Realtor' || user.user_type === 'Admin') && (
+                  {/* Only show My Properties for Realtors */}
+                  {user && user.user_type === 'Realtor' && (
                     <Link href="/my-properties" className={styles.dropdownItem}>
                       My Properties
                     </Link>
