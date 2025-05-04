@@ -124,10 +124,8 @@ export default function Register() {
         <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
       </Head>
 
-      <video className={styles.videoBg} autoPlay loop muted playsInline>
-        <source src="/background2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {/* Background Image - replacing video */}
+      <div className={styles.imageBg} style={{ backgroundImage: 'url(/bg3.jpeg)' }}></div>
 
       <div className={styles.overlay}></div>
 
@@ -244,7 +242,7 @@ export default function Register() {
               minLength="8"
             />
             {confirmPassword && password !== confirmPassword && (
-              <p className={styles.mismatchError}>Passwords don't match</p>
+              <p className={styles.mismatchError}>Passwords do not match</p>
             )}
             
             <label htmlFor="profile-picture">Profile Picture</label>

@@ -71,10 +71,8 @@ export default function Login() {
         <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
       </Head>
 
-      <video className={styles.videoBg} autoPlay loop muted playsInline>
-        <source src="/background.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {/* Background Image - replacing video */}
+      <div className={styles.imageBg} style={{ backgroundImage: 'url(/bg2.jpeg)' }}></div>
 
       <div className={styles.overlay}></div>
 

@@ -35,11 +35,8 @@ export default function Home() {
 
       <Navigation />
 
-      {/* Background Video */}
-      <video className={styles.videoBg} autoPlay loop muted playsInline>
-        <source src="/background3.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {/* Background Image - replacing video */}
+      <div className={styles.imageBg} style={{ backgroundImage: 'url(../bg1.jpeg)' }}></div>
 
       {/* Dark Overlay */}
       <div className={styles.overlay}></div>
